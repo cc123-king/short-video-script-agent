@@ -1,0 +1,46 @@
+{
+  "complete_batch": false,
+  "stopped_reason": "Stopped obsolete evaluation after identifying placeholder completion ambiguity, malformed native argument history rejection, and ineffective short-target reductions; prompt and protocol guard were then corrected.",
+  "saved_actual_results": [
+    {
+      "case": "missing",
+      "status": "needs_input",
+      "termination": "model_finished"
+    },
+    {
+      "case": "no_material",
+      "status": "needs_input",
+      "termination": "model_finished"
+    },
+    {
+      "case": "normal",
+      "status": "incomplete",
+      "termination": "model_finished"
+    },
+    {
+      "case": "overtime",
+      "status": "tool_failed",
+      "termination": "provider_error"
+    },
+    {
+      "case": "persistent_failure",
+      "status": "tool_failed",
+      "termination": "model_finished"
+    },
+    {
+      "case": "rule_repair",
+      "status": "completed",
+      "termination": "model_finished"
+    },
+    {
+      "case": "short_target",
+      "status": "incomplete",
+      "termination": "step_limit"
+    },
+    {
+      "case": "transient_failure",
+      "status": "tool_failed",
+      "termination": "provider_error"
+    }
+  ]
+}

@@ -9,6 +9,7 @@ import urllib.request
 from pathlib import Path
 
 from .domain import missing_fields, narration
+from .content_policy import NEUTRAL_TITLES, NEUTRAL_VISUALS, fact_visual
 
 
 class ProviderError(RuntimeError):
@@ -93,16 +94,16 @@ def make_demo_script(request, materials, compact=False):
     shots = []
     use_bridge = not compact or request["target_seconds"] >= 8
     if use_bridge:
-        shots.append({"id": "S1", "visual": "创作者打开一段待编辑视频，切到工作台。", "segments": [{"kind": "bridge", "text": "你的视频，想表达什么？", "fact_id": ""}], "on_screen_text": "你的视频，想表达什么？", "hold_seconds": 3})
+        shots.append({"id": "S1", "visual": NEUTRAL_VISUALS[0], "segments": [{"kind": "bridge", "text": "你的视频，想表达什么？", "fact_id": ""}], "on_screen_text": "你的视频，想表达什么？", "hold_seconds": 3})
     for fact in facts:
         line = fact["approved_lines"][0]
-        shots.append({"id": f"S{len(shots) + 1}", "visual": "镜头展示该素材描述的操作界面。", "segments": [{"kind": "fact", "text": line, "fact_id": fact["id"]}], "on_screen_text": line, "hold_seconds": 2 if compact else 3})
+        shots.append({"id": f"S{len(shots) + 1}", "visual": fact_visual(fact), "segments": [{"kind": "fact", "text": line, "fact_id": fact["id"]}], "on_screen_text": line, "hold_seconds": 2 if compact else 3})
     if use_bridge:
-        shots.append({"id": f"S{len(shots) + 1}", "visual": "镜头回到创作者和当前视频预览。", "segments": [{"kind": "cta", "text": "试着剪出你的下一条视频。", "fact_id": ""}], "on_screen_text": "试着剪出你的下一条视频。", "hold_seconds": 3})
+        shots.append({"id": f"S{len(shots) + 1}", "visual": NEUTRAL_VISUALS[2], "segments": [{"kind": "cta", "text": "试着剪出你的下一条视频。", "fact_id": ""}], "on_screen_text": "试着剪出你的下一条视频。", "hold_seconds": 3})
     hold = max(0.5, min(30, round(request["target_seconds"] * 0.9 / len(shots), 1)))
     for shot in shots:
         shot["hold_seconds"] = hold
-    return {"title": "把想法放进画面", "product_id": request["product_id"], "shots": shots}
+    return {"title": NEUTRAL_TITLES[0], "product_id": request["product_id"], "shots": shots}
 
 
 class MockProvider:

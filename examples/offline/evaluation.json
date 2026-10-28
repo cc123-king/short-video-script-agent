@@ -1,8 +1,8 @@
 {
   "provider": "mock",
   "execution_mode": "offline_mock",
-  "passed": 10,
-  "total": 10,
+  "passed": 11,
+  "total": 11,
   "distinct_tool_paths": 7,
   "all_passed": true,
   "results": [
@@ -403,6 +403,58 @@
       "result_file": "changed_material/result.json",
       "path": [
         "search_materials",
+        "estimate_duration",
+        "check_rules",
+        "finish"
+      ]
+    },
+    {
+      "case_id": "visual_repair",
+      "execution_mode": "offline_mock",
+      "expected_statuses": [
+        "completed"
+      ],
+      "actual_status": "completed",
+      "passed": true,
+      "checks": [
+        {
+          "name": "期望任务状态",
+          "passed": true
+        },
+        {
+          "name": "未超工具调用上限",
+          "passed": true
+        },
+        {
+          "name": "最终版本时长通过",
+          "passed": true
+        },
+        {
+          "name": "最终版本规则通过",
+          "passed": true
+        },
+        {
+          "name": "有来源支持",
+          "passed": true
+        },
+        {
+          "name": "完成于最新版本",
+          "passed": true
+        },
+        {
+          "name": "实际拒绝无依据画面且不被待确认标签豁免",
+          "passed": true
+        },
+        {
+          "name": "画面反馈后产生新脚本",
+          "passed": true
+        }
+      ],
+      "result_file": "visual_repair/result.json",
+      "path": [
+        "search_materials",
+        "estimate_duration",
+        "check_rules",
         "estimate_duration",
         "check_rules",
         "finish"

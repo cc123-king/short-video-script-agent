@@ -1,0 +1,275 @@
+{
+  "schema_version": "1.0",
+  "created_at": "2026-10-28T11:58:58.018457+00:00",
+  "execution_mode": "real_model",
+  "model": "qwen-plus",
+  "request": {
+    "theme": "轻剪演示版的字幕与竖屏创作介绍",
+    "audience": "刚开始制作短视频的内容创作者",
+    "platform": "抖音",
+    "target_seconds": 30,
+    "style": "简洁、友好，展示实际操作，不夸大效果",
+    "product_id": "clip-demo"
+  },
+  "knowledge_sha256": "f0d329e55d221c3ea5276e802516f4e21a13247e05a73bf0721eaefc5ed8f02f",
+  "status": "tool_failed",
+  "message": "千问 HTTP 400: 请求参数、模型或地域接口不匹配；本次未自动重试",
+  "missing_information": [],
+  "termination": "provider_error",
+  "revision_id": null,
+  "script": null,
+  "duration": null,
+  "rules": null,
+  "revisions": {},
+  "trace": [
+    {
+      "step": 1,
+      "model_round": 1,
+      "tool": "search_materials",
+      "parameters": {
+        "query": "轻剪演示版 字幕 竖屏创作",
+        "reason": "根据主题和产品 ID 检索合成资料，获取可引用的事实与核准表达"
+      },
+      "decision_basis": "根据主题和产品 ID 检索合成资料，获取可引用的事实与核准表达",
+      "observation_summary": "INJECTED_TOOL_FAILURE: search_materials 测试故障；工具未完成，本次没有成功结果",
+      "observation": {
+        "ok": false,
+        "error": {
+          "code": "INJECTED_TOOL_FAILURE",
+          "message": "search_materials 测试故障；工具未完成，本次没有成功结果",
+          "retryable": true
+        }
+      },
+      "next_action": {
+        "tool": "search_materials",
+        "decision_basis": "原查询失败，改写为更具体的关键词组合重试"
+      }
+    },
+    {
+      "step": 2,
+      "model_round": 2,
+      "tool": "search_materials",
+      "parameters": {
+        "query": "轻剪演示版 clip-demo 字幕功能 竖屏适配",
+        "reason": "原查询失败，改写为更具体的关键词组合重试"
+      },
+      "decision_basis": "原查询失败，改写为更具体的关键词组合重试",
+      "observation_summary": "检索到 3 条素材: P01, P02, P03",
+      "observation": {
+        "ok": true,
+        "query": "轻剪演示版 clip-demo 字幕功能 竖屏适配",
+        "materials": [
+          {
+            "id": "P01",
+            "product_id": "clip-demo",
+            "name": "轻剪演示版：字幕编辑说明",
+            "version": "2026-10-01",
+            "keywords": [
+              "轻剪",
+              "字幕",
+              "文字",
+              "caption",
+              "subtitle",
+              "口播",
+              "产品介绍"
+            ],
+            "facts": [
+              {
+                "id": "P01.F1",
+                "text": "轻剪演示版支持添加和编辑字幕。",
+                "approved_lines": [
+                  "支持添加和编辑字幕。",
+                  "字幕内容，可以添加，也可以编辑。"
+                ]
+              }
+            ],
+            "search_score": 6,
+            "matched_terms": [
+              "剪演",
+              "字幕",
+              "演示",
+              "示版",
+              "轻剪",
+              "轻剪演示版"
+            ]
+          },
+          {
+            "id": "P02",
+            "product_id": "clip-demo",
+            "name": "轻剪演示版：画布说明",
+            "version": "2026-10-01",
+            "keywords": [
+              "轻剪",
+              "画布",
+              "竖屏",
+              "短视频",
+              "产品介绍",
+              "canvas"
+            ],
+            "facts": [
+              {
+                "id": "P02.F1",
+                "text": "轻剪演示版支持设置9:16竖屏画布。",
+                "approved_lines": [
+                  "支持设置9:16竖屏画布。",
+                  "画布可以设置为9:16竖屏。"
+                ]
+              }
+            ],
+            "search_score": 6,
+            "matched_terms": [
+              "剪演",
+              "演示",
+              "示版",
+              "竖屏",
+              "轻剪",
+              "轻剪演示版"
+            ]
+          },
+          {
+            "id": "P03",
+            "product_id": "clip-demo",
+            "name": "轻剪演示版：预览说明",
+            "version": "2026-10-01",
+            "keywords": [
+              "轻剪",
+              "预览",
+              "剪辑",
+              "回看",
+              "产品介绍",
+              "preview"
+            ],
+            "facts": [
+              {
+                "id": "P03.F1",
+                "text": "轻剪演示版支持预览当前剪辑效果。",
+                "approved_lines": [
+                  "支持预览当前剪辑效果。",
+                  "当前剪辑效果，可以预览。"
+                ]
+              }
+            ],
+            "search_score": 5,
+            "matched_terms": [
+              "剪演",
+              "演示",
+              "示版",
+              "轻剪",
+              "轻剪演示版"
+            ]
+          }
+        ],
+        "count": 3,
+        "notice": "全部为虚构产品的合成测试资料，不代表小影科技或其产品的真实功能。",
+        "creative_options": {
+          "policy_id": "grounded-creative-v1",
+          "titles": [
+            "把想法放进画面",
+            "开始你的下一条视频",
+            "让画面和文字一起讲述"
+          ],
+          "neutral_visuals": [
+            "创作者面对镜头，提出本条视频的主题。",
+            "桌面上的纸质分镜卡依次展开。",
+            "创作者面向镜头，画面留白承接旁白。",
+            "界面占位镜头：等待真实产品截图或录屏，当前仅呈现本镜旁白文字卡。"
+          ],
+          "fact_visuals": [
+            {
+              "fact_id": "P01.F1",
+              "quote": "轻剪演示版支持添加和编辑字幕。",
+              "visual": "展示素材原文文字卡：轻剪演示版支持添加和编辑字幕。"
+            },
+            {
+              "fact_id": "P02.F1",
+              "quote": "轻剪演示版支持设置9:16竖屏画布。",
+              "visual": "展示素材原文文字卡：轻剪演示版支持设置9:16竖屏画布。"
+            },
+            {
+              "fact_id": "P03.F1",
+              "quote": "轻剪演示版支持预览当前剪辑效果。",
+              "visual": "展示素材原文文字卡：轻剪演示版支持预览当前剪辑效果。"
+            }
+          ]
+        }
+      },
+      "next_action": {
+        "tool": "estimate_duration",
+        "decision_basis": ""
+      }
+    },
+    {
+      "step": 3,
+      "model_round": 3,
+      "tool": "estimate_duration",
+      "parameters": {},
+      "decision_basis": "",
+      "observation_summary": "INVALID_JSON: 工具参数须为有效 JSON 对象，且不超过 40000 字符",
+      "observation": {
+        "ok": false,
+        "error": {
+          "code": "INVALID_JSON",
+          "message": "工具参数须为有效 JSON 对象，且不超过 40000 字符"
+        }
+      },
+      "next_action": {
+        "status": "tool_failed",
+        "termination": "provider_error"
+      }
+    }
+  ],
+  "metrics": {
+    "model_rounds": 4,
+    "tool_calls": 3,
+    "max_steps": 14,
+    "max_tool_calls": 24,
+    "elapsed_seconds": 14.438,
+    "model_calls": [
+      {
+        "model": "qwen-plus",
+        "response_id": "chatcmpl-b653d258-d0a9-9682-804f-77fa265ee7f8",
+        "usage": {
+          "prompt_tokens": 2113,
+          "total_tokens": 2167,
+          "completion_tokens": 54,
+          "prompt_tokens_details": {
+            "cached_tokens": 1984
+          }
+        },
+        "latency_seconds": 1.5
+      },
+      {
+        "model": "qwen-plus",
+        "response_id": "chatcmpl-b40ab7b8-0696-9ab3-9a94-a56adb9c8618",
+        "usage": {
+          "prompt_tokens": 2223,
+          "total_tokens": 2275,
+          "completion_tokens": 52,
+          "prompt_tokens_details": {
+            "cached_tokens": 1920
+          }
+        },
+        "latency_seconds": 1.704
+      },
+      {
+        "model": "qwen-plus",
+        "response_id": "chatcmpl-bd906baa-6f17-9b5b-a135-1fbcbe65065f",
+        "usage": {
+          "prompt_tokens": 3111,
+          "total_tokens": 3598,
+          "completion_tokens": 487,
+          "prompt_tokens_details": {
+            "cached_tokens": 2048
+          }
+        },
+        "latency_seconds": 11.031
+      }
+    ]
+  },
+  "limitations": [
+    "仅生成脚本，未生成或发布视频",
+    "时长为文本启发式估算，非真实配音实测",
+    "旁白、标题与画面采用受控表达，限制自由创作；素材与实际成片仍需人工复核",
+    "离线 Mock 只能验证流程，不能证明真实模型决策效果"
+  ]
+}

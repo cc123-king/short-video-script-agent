@@ -5,7 +5,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
-from script_agent.domain import read_json
+from script_agent.domain import read_json, parse_tool_arguments
 from script_agent.knowledge import Knowledge
 from script_agent.tools import ToolSession
 
@@ -25,7 +25,15 @@ def verify(directory):
         for step in result["trace"]:
             if session.final is not None:
                 raise ValueError(f"{path.parent.name}: 结束后仍有工具执行")
-            observed = session.execute(step["tool"], step["parameters"])
+            if step.get("history_arguments_normalized"):
+                try:
+                    parse_tool_arguments(step["raw_arguments"])
+                except (ValueError, TypeError):
+                    observed = {"ok": False, "error": {"code": "INVALID_JSON", "message": "工具参数须为有效 JSON 对象，且不超过 40000 字符"}}
+                else:
+                    raise ValueError(f"{path.parent.name}: 有效参数被错误标记为格式异常")
+            else:
+                observed = session.execute(step["tool"], step["parameters"])
             if observed != step["observation"]:
                 raise ValueError(f"{path.parent.name}: 第 {step['step']} 步返回不能复现")
         if session.final and session.final["status"] != result["status"]:

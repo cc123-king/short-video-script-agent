@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "created_at": "2026-10-28T11:02:07.908091+00:00",
+  "created_at": "2026-10-28T11:58:01.212629+00:00",
   "execution_mode": "offline_mock",
   "model": "deterministic-offline-fixture-v1",
   "request": {
@@ -11,7 +11,7 @@
     "style": "简洁",
     "product_id": "unlisted-coffee-machine"
   },
-  "knowledge_sha256": "8ef730b7f73863d9422a8a9dfca0f33513b6231f9e65b21088c6e790f53be49a",
+  "knowledge_sha256": "f0d329e55d221c3ea5276e802516f4e21a13247e05a73bf0721eaefc5ed8f02f",
   "status": "needs_input",
   "message": "资料中没有可用产品事实，请补充素材。",
   "missing_information": [
@@ -39,7 +39,22 @@
         "query": "介绍未收录的智能咖啡机",
         "materials": [],
         "count": 0,
-        "notice": "全部为虚构产品的合成测试资料，不代表小影科技或其产品的真实功能。"
+        "notice": "全部为虚构产品的合成测试资料，不代表小影科技或其产品的真实功能。",
+        "creative_options": {
+          "policy_id": "grounded-creative-v1",
+          "titles": [
+            "把想法放进画面",
+            "开始你的下一条视频",
+            "让画面和文字一起讲述"
+          ],
+          "neutral_visuals": [
+            "创作者面对镜头，提出本条视频的主题。",
+            "桌面上的纸质分镜卡依次展开。",
+            "创作者面向镜头，画面留白承接旁白。",
+            "界面占位镜头：等待真实产品截图或录屏，当前仅呈现本镜旁白文字卡。"
+          ],
+          "fact_visuals": []
+        }
       },
       "next_action": {
         "tool": "search_materials",
@@ -61,7 +76,22 @@
         "query": "unlisted-coffee-machine",
         "materials": [],
         "count": 0,
-        "notice": "全部为虚构产品的合成测试资料，不代表小影科技或其产品的真实功能。"
+        "notice": "全部为虚构产品的合成测试资料，不代表小影科技或其产品的真实功能。",
+        "creative_options": {
+          "policy_id": "grounded-creative-v1",
+          "titles": [
+            "把想法放进画面",
+            "开始你的下一条视频",
+            "让画面和文字一起讲述"
+          ],
+          "neutral_visuals": [
+            "创作者面对镜头，提出本条视频的主题。",
+            "桌面上的纸质分镜卡依次展开。",
+            "创作者面向镜头，画面留白承接旁白。",
+            "界面占位镜头：等待真实产品截图或录屏，当前仅呈现本镜旁白文字卡。"
+          ],
+          "fact_visuals": []
+        }
       },
       "next_action": {
         "tool": "finish",
@@ -125,7 +155,7 @@
   "limitations": [
     "仅生成脚本，未生成或发布视频",
     "时长为文本启发式估算，非真实配音实测",
-    "产品旁白采用核准表达；标题与画面说明仍需人工复核",
+    "旁白、标题与画面采用受控表达，限制自由创作；素材与实际成片仍需人工复核",
     "离线 Mock 只能验证流程，不能证明真实模型决策效果"
   ]
 }

@@ -9,6 +9,7 @@
     {"id": "rule_repair", "input": "examples/inputs/rule_repair.json", "expected_statuses": ["completed"], "require_rule_repair": true},
     {"id": "short_target", "input": "examples/inputs/short_target.json", "expected_statuses": ["completed"]},
     {"id": "impossible_target", "input": "examples/inputs/impossible_target.json", "expected_statuses": ["blocked", "incomplete", "needs_input"]},
-    {"id": "changed_material", "input": "examples/inputs/normal.json", "catalog": "data/materials_changed.json", "expected_statuses": ["completed"], "required_quote": "轻剪演示版仅支持导入字幕文件。"}
+    {"id": "changed_material", "input": "examples/inputs/normal.json", "catalog": "data/materials_changed.json", "expected_statuses": ["completed"], "required_quote": "轻剪演示版仅支持导入字幕文件。"},
+    {"id": "visual_repair", "input": "examples/inputs/visual_repair.json", "expected_statuses": ["completed"], "require_visual_repair": true}
   ]
 }

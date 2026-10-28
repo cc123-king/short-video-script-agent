@@ -1,0 +1,27 @@
+Executed at 2026-10-28T12:16:17.398319+00:00
+Mode: offline
+PASS changed_material: 4 步工具返回可回放
+PASS impossible_target: 5 步工具返回可回放
+PASS missing: 1 步工具返回可回放
+PASS no_material: 3 步工具返回可回放
+PASS normal: 4 步工具返回可回放
+PASS overtime: 5 步工具返回可回放
+PASS persistent_failure: 3 步工具返回可回放
+PASS rule_repair: 6 步工具返回可回放
+PASS short_target: 5 步工具返回可回放
+PASS transient_failure: 5 步工具返回可回放
+PASS visual_repair: 6 步工具返回可回放
+回放只验证工具证据一致性，不证明模型身份、语义质量或决策真实性。
+Mode: real
+PASS changed_material: 4 步工具返回可回放
+PASS impossible_target: 10 步工具返回可回放
+PASS missing: 3 步工具返回可回放
+PASS no_material: 2 步工具返回可回放
+PASS normal: 4 步工具返回可回放
+PASS overtime: 6 步工具返回可回放
+PASS persistent_failure: 4 步工具返回可回放
+PASS rule_repair: 9 步工具返回可回放
+PASS short_target: 9 步工具返回可回放
+PASS transient_failure: 5 步工具返回可回放
+PASS visual_repair: 6 步工具返回可回放
+回放只验证工具证据一致性，不证明模型身份、语义质量或决策真实性。

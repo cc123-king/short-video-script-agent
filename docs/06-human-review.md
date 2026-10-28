@@ -11,13 +11,13 @@ python run.py run --provider qwen --input examples/inputs/normal.json --output w
 
 查看 `work/human-normal/report.md` 与 `data/materials.json`。
 
-已确认的人工审阅：2026-10-28，作答者查看了 AI 已运行的 `examples/real/normal/report.md`，核对一条旁白有原文支持，并确认界面待确认标记正确。未把这项审阅写成亲自重新运行任务。
+已确认的人工审阅：2026-10-28，作答者查看了 AI 已运行的正常报告，核对一条旁白有原文支持，并确认界面待确认标记正确。该旧版原始报告现保存在 `examples/experiments/before-visual-policy/real/normal/report.md`。后续审查发现旧版画面仍暗示无依据产品能力，已由 AI 修复并重新运行；原有人工审阅不代表作答者已经验收新版全部镜头，也未写成亲自重新运行任务。
 
 - [ ] 标题、分镜、旁白和目标受众相符。
 - [ ] 每个产品事实能对应素材 ID、版本和原文。
 - [ ] 没有素材未提供的效果数据、价格或功能承诺。
 - [ ] 时长、检查结果与脚本版本一致。
-- [x] 已对照现有真实样例人工核对至少一条旁白与界面待确认标记。
+- [x] 已对照修复前的真实样例人工核对至少一条旁白与界面待确认标记。
 
 ## 2. 超时反馈与实际修正
 
@@ -55,6 +55,6 @@ python run.py run --provider qwen --input examples/inputs/overtime.json --output
 ## 最终提交前
 
 - [ ] 文档中的个人贡献属实，人工验收记录已补充。
-- [ ] GitHub 仓库可供指定评审访问。
+- [x] GitHub 仓库已公开，已验证未登录可访问。
 - [ ] 提交题号、URL 与最终 commit SHA；SHA 与提交内容一致。
 - [ ] `.env` 未跟踪，仓库不包含真实 Key、隐私数据或考试页面截图。

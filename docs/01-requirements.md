@@ -31,6 +31,7 @@
 | 观察工具失败后决定下一步，不虚报成功 | Agent 观察循环、工具故障注入 | transient_failure、persistent_failure |
 | 超时长时实际修改，再估算；否则明确失败 | 不可变脚本版本、`estimate_duration` | overtime、short_target、impossible_target |
 | 产品事实有对应来源，违规后修正再检查 | 核准表达、`check_rules` | rule_repair、事实篡改测试 |
+| 画面与标题不增加无依据产品能力，待确认标签不构成豁免 | 受控创作选项、同镜事实卡、`UNSUPPORTED_VISUAL` | visual_repair、画面与标题回归测试 |
 | 至少两种由真实模型反馈产生的路径 | 千问原生 function calling、Trace | 真实运行记录，状态见评估文档 |
 | 调用有界，到上限明确未完成 | `run_agent` | 上限单元测试与 CLI 命令 |
 

@@ -15,6 +15,7 @@ from script_agent.knowledge import Knowledge
 from script_agent.providers import MockProvider, make_demo_script
 from script_agent.report import save_result
 from script_agent.tools import ToolSession
+from script_agent.content_policy import NEUTRAL_VISUALS, fact_visual
 
 
 def knowledge(catalog=None):
@@ -105,12 +106,58 @@ class ScriptToolsTests(unittest.TestCase):
         self.assertFalse(rules["passed"])
         self.assertFalse(self.call("finish", status="completed", message="完成", revision_id=duration["revision_id"])["ok"])
 
-    def test_specific_ui_scene_is_marked_pending_even_when_copy_passes(self):
+    def test_specific_ui_scene_needs_confirmation_and_cannot_pass(self):
         script = copy.deepcopy(self.script)
         script["shots"][0]["visual"] = "点击右上角按钮，双指缩放预览窗口。"
         _, rules = self.submit_and_check(script)
-        self.assertTrue(rules["passed"])
+        self.assertFalse(rules["passed"])
+        self.assertIn("UNSUPPORTED_VISUAL", [item["code"] for item in rules["issues"]])
         self.assertTrue(any(item["shot_id"] == script["shots"][0]["id"] and item["status"] == "needs_confirmation" for item in rules["pending_confirmations"]))
+
+    def test_pending_label_cannot_authorize_automatic_subtitle_claim(self):
+        script = copy.deepcopy(self.script)
+        shot = next(s for s in script["shots"] if s["segments"][0]["kind"] == "fact")
+        shot["visual"] = "【界面待确认】点击字幕按钮，自动生成文字气泡。"
+        duration, rules = self.submit_and_check(script)
+        self.assertIn("UNSUPPORTED_VISUAL", [item["code"] for item in rules["issues"]])
+        self.assertFalse(self.call("finish", status="completed", message="完成", revision_id=duration["revision_id"])["ok"])
+
+    def test_changed_material_cannot_imply_ratio_switching(self):
+        session = ToolSession(knowledge(ROOT / "data/materials_changed.json"), self.request)
+        materials = session.execute("search_materials", {"query": "轻剪", "reason": "检索替换资料"})["materials"]
+        script = make_demo_script(self.request, materials)
+        script["shots"][0]["visual"] = "界面示意：手指滑动预览窗，展示不同比例画面切换，待确认。"
+        duration = session.execute("estimate_duration", {"script": script, "reason": "检查画面"})
+        rules = session.execute("check_rules", {"revision_id": duration["revision_id"], "reason": "核对来源"})
+        self.assertFalse(rules["passed"])
+        self.assertIn("UNSUPPORTED_VISUAL", [item["code"] for item in rules["issues"]])
+
+    def test_unlisted_visual_claim_is_rejected_without_keyword_blacklist(self):
+        script = copy.deepcopy(self.script)
+        script["shots"][0]["visual"] = "成片直接同步到所有社交账号。"
+        _, rules = self.submit_and_check(script)
+        self.assertIn("UNSUPPORTED_VISUAL", [item["code"] for item in rules["issues"]])
+
+    def test_fact_card_must_cite_its_fact_in_same_shot(self):
+        script = copy.deepcopy(self.script)
+        shot = next(s for s in script["shots"] if s["segments"][0].get("fact_id") == "P01.F1")
+        shot["visual"] = fact_visual(self.session.facts["P02.F1"])
+        _, rules = self.submit_and_check(script)
+        self.assertFalse(rules["passed"])
+        self.assertIn("UNSUPPORTED_VISUAL", [item["code"] for item in rules["issues"]])
+
+    def test_unapproved_title_cannot_add_unsupported_capability(self):
+        script = copy.deepcopy(self.script)
+        script["title"] = "一秒完成多语言字幕与高清视频导出"
+        _, rules = self.submit_and_check(script)
+        self.assertIn("UNAPPROVED_TITLE", [item["code"] for item in rules["issues"]])
+
+    def test_neutral_ui_placeholder_is_allowed_and_marked_pending(self):
+        script = copy.deepcopy(self.script)
+        script["shots"][0]["visual"] = NEUTRAL_VISUALS[-1]
+        _, rules = self.submit_and_check(script)
+        self.assertTrue(rules["passed"])
+        self.assertTrue(rules["pending_confirmations"])
 
     def test_overtime_cannot_finish_successfully(self):
         overtime = read_json(ROOT / "examples/inputs/overtime.json")["initial_script"]
@@ -216,6 +263,26 @@ class AgentBoundaryTests(unittest.TestCase):
         result = run_agent(Broken(), knowledge(), read_json(ROOT / "examples/inputs/normal.json"), max_steps=2)
         self.assertEqual(result["status"], "incomplete")
         self.assertEqual(result["trace"][0]["observation"]["error"]["code"], "INVALID_JSON")
+
+    def test_bad_native_arguments_are_recorded_and_history_can_recover(self):
+        class StrictHistory(MockProvider):
+            def respond(self, messages, tools):
+                if not self.serial:
+                    message = self.call("search_materials", query="轻剪", reason="测试")
+                    message["tool_calls"][0]["function"]["arguments"] = "{broken"
+                    return message
+                for message in messages:
+                    for call in message.get("tool_calls", []):
+                        json.loads(call["function"]["arguments"])
+                if messages[-1]["role"] == "tool" and json.loads(messages[-1]["content"]).get("error", {}).get("code") == "INVALID_JSON":
+                    return self.call("search_materials", query="轻剪", reason="修正工具参数格式")
+                return super().respond(messages, tools)
+        result = run_agent(StrictHistory(), knowledge(), read_json(ROOT / "examples/inputs/normal.json"))
+        self.assertEqual(result["status"], "completed")
+        event = result["trace"][0]
+        self.assertEqual(event["raw_arguments"], "{broken")
+        self.assertTrue(event["history_arguments_normalized"])
+        self.assertEqual(event["observation"]["error"]["code"], "INVALID_JSON")
 
     def test_free_text_cannot_report_completion(self):
         class Pretender(MockProvider):

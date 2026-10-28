@@ -21,6 +21,15 @@ def digest(value):
     return hashlib.sha256(canonical(value).encode("utf-8")).hexdigest()
 
 
+def parse_tool_arguments(raw):
+    if not isinstance(raw, str) or len(raw) > 40000:
+        raise ValueError("Invalid tool argument encoding or size")
+    value = json.loads(raw)
+    if not isinstance(value, dict):
+        raise ValueError("Tool arguments must be an object")
+    return value
+
+
 def write_json(path, value):
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)

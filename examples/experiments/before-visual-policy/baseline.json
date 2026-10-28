@@ -1,0 +1,9 @@
+{
+  "baseline_commit": "0e4ad4572f7dc022f1c0820dc8673389ba71f654",
+  "purpose": "Historical actual runs before strict visual/title policy; not current acceptance evidence",
+  "known_issues": [
+    "normal: unsupported automatic text generation in visual",
+    "changed_material: unsupported ratio switching in visual"
+  ],
+  "replay": "Use the baseline commit implementation and data; current stricter policy intentionally differs"
+}

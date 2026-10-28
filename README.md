@@ -7,7 +7,7 @@
 ## 评审入口
 
 1. 阅读 [方案设计](docs/02-solution.md)，了解模型决策与代码约束的分工。
-2. 阅读 [评估说明](docs/03-evaluation.md)、[真实千问实际运行结果](examples/real/evaluation.md) 和 [离线实际运行结果](examples/offline/evaluation.md)。本次 34 项自动化测试通过，真实模型及离线各 10 个场景断言通过。**离线 Mock 只验证流程，不能证明模型决策效果。**
+2. 阅读 [评估说明](docs/03-evaluation.md)、[真实千问实际运行结果](examples/real/evaluation.md) 和 [离线实际运行结果](examples/offline/evaluation.md)。本次 41 项自动化测试通过，真实模型及离线各 11 个场景断言通过，包含无依据画面的实际修正。**离线 Mock 只验证流程，不能证明模型决策效果。**
 3. `result.json` 包含完整输入、各版脚本、工具参数、工具返回、后续动作和简要依据；`report.md` 提供分镜、时长、来源及路径的可读视图。
 4. 按下列命令重新运行。测试不需要 API Key。
 
@@ -86,7 +86,7 @@ Windows 隐藏输入不便时，可改运行 `python scripts/configure_gui.py`�
 python run.py run --provider qwen --input examples/inputs/overtime.json --output work/overtime
 python run.py run --provider qwen --input examples/inputs/rule_repair.json --output work/rule-repair
 python run.py run --provider mock --input examples/inputs/normal.json --max-tool-calls 1 --output work/limited
-python run.py evaluate --provider qwen --only normal overtime rule_repair --output work/focused-evaluation
+python run.py evaluate --provider qwen --only normal overtime rule_repair visual_repair --output work/focused-evaluation
 python scripts/verify_evidence.py examples/offline
 ```
 
@@ -116,7 +116,7 @@ scripts/            本地 Key 配置、证据回放、交付打包
 ## 已知限制
 
 - 中文口播估时为可解释的启发式模型，不是 TTS 或视频时长测量，不保证每位配音者的实际语速。
-- 核准表达保证产品旁白的事实边界，但限制自由改写；标题与画面说明仅做规则筛查，不能声称解决了任意文本的语义真实性验证。
+- 旁白使用素材核准表达；标题使用中性核准标题。没有界面资料时，画面仅接受中性镜头、明确占位或本镜已引用事实的原文文字卡。该受控表达方案限制自由创作，不能声称验证了任意自由文本的语义真实性。
 - 本地关键词/字词匹配适合小规模合成库，不等同于生产级语义检索。
 - 一次任务内资料固定为快照；不实现跨进程任务恢复、协作式编辑或真实平台发布。
 - 已完成真实模型验证和一项作答者人工审阅；其他人工验收尚未执行的项目保留未勾选，详见评估和 AI 使用说明。

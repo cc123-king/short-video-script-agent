@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "created_at": "2026-10-28T10:56:01.206853+00:00",
+  "created_at": "2026-10-28T12:07:50.925809+00:00",
   "execution_mode": "real_model",
   "model": "qwen-plus",
   "request": {
@@ -30,19 +30,32 @@
       ]
     }
   },
-  "knowledge_sha256": "8ef730b7f73863d9422a8a9dfca0f33513b6231f9e65b21088c6e790f53be49a",
+  "knowledge_sha256": "f0d329e55d221c3ea5276e802516f4e21a13247e05a73bf0721eaefc5ed8f02f",
   "status": "completed",
-  "message": "脚本已通过时长与规则双检：5镜共17.4秒，覆盖字幕、竖屏画布、预览三大功能，使用全部核准事实与品牌语；所有visual描述均为示意，需后续确认产品界面素材后方可实拍。",
+  "message": "脚本已通过全部检查：标题、事实引用、品牌合规、结构完整（含 bridge + 3 条核准事实 + cta），总时长 17.6 秒，符合 30 秒目标。S1 使用品牌核准 bridge_line，S2–S4 均使用检索到的 fact_visuals.visual 及 approved_lines，S5 使用 neutral_visuals。注意：S1 的 '界面占位镜头' 需后续补充真实截图或录屏；当前交付为合规可编辑文本脚本。",
   "missing_information": [],
   "termination": "model_finished",
-  "revision_id": "rev-275f7d718f4ed184",
+  "revision_id": "rev-9187385c99f53442",
   "script": {
-    "title": "轻剪演示版：字幕与竖屏创作",
+    "title": "让画面和文字一起讲述",
     "product_id": "clip-demo",
     "shots": [
       {
         "id": "S1",
-        "visual": "界面示意：点击‘字幕’按钮，输入文字，拖动调整位置。",
+        "visual": "界面占位镜头：等待真实产品截图或录屏，当前仅呈现本镜旁白文字卡。",
+        "segments": [
+          {
+            "kind": "bridge",
+            "text": "让画面和文字，一起讲述。",
+            "fact_id": ""
+          }
+        ],
+        "on_screen_text": "",
+        "hold_seconds": 3.5
+      },
+      {
+        "id": "S2",
+        "visual": "展示素材原文文字卡：轻剪演示版支持添加和编辑字幕。",
         "segments": [
           {
             "kind": "fact",
@@ -54,8 +67,8 @@
         "hold_seconds": 3.5
       },
       {
-        "id": "S2",
-        "visual": "界面示意：选择画布尺寸为9:16竖屏。",
+        "id": "S3",
+        "visual": "展示素材原文文字卡：轻剪演示版支持设置9:16竖屏画布。",
         "segments": [
           {
             "kind": "fact",
@@ -67,8 +80,8 @@
         "hold_seconds": 3.5
       },
       {
-        "id": "S3",
-        "visual": "界面示意：点击‘预览’按钮，查看当前剪辑效果。",
+        "id": "S4",
+        "visual": "展示素材原文文字卡：轻剪演示版支持预览当前剪辑效果。",
         "segments": [
           {
             "kind": "fact",
@@ -80,21 +93,8 @@
         "hold_seconds": 3.5
       },
       {
-        "id": "S4",
-        "visual": "轻剪演示版 LOGO + 界面概览动效",
-        "segments": [
-          {
-            "kind": "bridge",
-            "text": "让画面和文字，一起讲述。",
-            "fact_id": ""
-          }
-        ],
-        "on_screen_text": "让画面和文字，一起讲述。",
-        "hold_seconds": 3.0
-      },
-      {
         "id": "S5",
-        "visual": "手机屏幕显示‘轻剪演示版’启动页，手指轻点图标",
+        "visual": "创作者面向镜头，画面留白承接旁白。",
         "segments": [
           {
             "kind": "cta",
@@ -102,14 +102,14 @@
             "fact_id": ""
           }
         ],
-        "on_screen_text": "试着剪出你的下一条视频。",
-        "hold_seconds": 3.0
+        "on_screen_text": "",
+        "hold_seconds": 3.5
       }
     ]
   },
   "duration": {
     "profile_id": "zh-conservative-v1",
-    "estimated_total_seconds": 17.4,
+    "estimated_total_seconds": 17.6,
     "target_seconds": 30,
     "within_limit": true,
     "over_by_seconds": 0,
@@ -119,18 +119,18 @@
         "start_seconds": 0.0,
         "end_seconds": 3.5,
         "estimated_seconds": 3.5,
-        "speech_seconds": 2.94,
+        "speech_seconds": 3.23,
         "visual_hold_seconds": 3.5,
-        "subtitle_seconds": 1.5
+        "subtitle_seconds": 0.0
       },
       {
         "shot_id": "S2",
         "start_seconds": 3.5,
         "end_seconds": 7.0,
         "estimated_seconds": 3.5,
-        "speech_seconds": 3.23,
+        "speech_seconds": 2.94,
         "visual_hold_seconds": 3.5,
-        "subtitle_seconds": 1.67
+        "subtitle_seconds": 1.5
       },
       {
         "shot_id": "S3",
@@ -144,20 +144,20 @@
       {
         "shot_id": "S4",
         "start_seconds": 10.5,
-        "end_seconds": 13.8,
-        "estimated_seconds": 3.3,
+        "end_seconds": 14.0,
+        "estimated_seconds": 3.5,
         "speech_seconds": 3.23,
-        "visual_hold_seconds": 3.0,
+        "visual_hold_seconds": 3.5,
         "subtitle_seconds": 1.67
       },
       {
         "shot_id": "S5",
-        "start_seconds": 13.8,
-        "end_seconds": 17.4,
+        "start_seconds": 14.0,
+        "end_seconds": 17.6,
         "estimated_seconds": 3.6,
         "speech_seconds": 3.51,
-        "visual_hold_seconds": 3.0,
-        "subtitle_seconds": 1.83
+        "visual_hold_seconds": 3.5,
+        "subtitle_seconds": 0.0
       }
     ],
     "method": "逐镜取画面停留、含安全系数的口播、字幕阅读三者最大值后相加",
@@ -168,7 +168,7 @@
     "issues": [],
     "citations": [
       {
-        "shot_id": "S1",
+        "shot_id": "S2",
         "fact_id": "P01.F1",
         "material_id": "P01",
         "version": "2026-10-01",
@@ -176,7 +176,7 @@
         "used_text": "支持添加和编辑字幕。"
       },
       {
-        "shot_id": "S2",
+        "shot_id": "S3",
         "fact_id": "P02.F1",
         "material_id": "P02",
         "version": "2026-10-01",
@@ -184,7 +184,7 @@
         "used_text": "支持设置9:16竖屏画布。"
       },
       {
-        "shot_id": "S3",
+        "shot_id": "S4",
         "fact_id": "P03.F1",
         "material_id": "P03",
         "version": "2026-10-01",
@@ -199,41 +199,14 @@
         "status": "needs_confirmation",
         "reason": "素材只证明产品能力，未提供具体界面、控件位置或操作手势的证据",
         "required_material": "与该镜头对应的产品截图/录屏或经确认的界面说明"
-      },
-      {
-        "shot_id": "S2",
-        "field": "visual",
-        "status": "needs_confirmation",
-        "reason": "素材只证明产品能力，未提供具体界面、控件位置或操作手势的证据",
-        "required_material": "与该镜头对应的产品截图/录屏或经确认的界面说明"
-      },
-      {
-        "shot_id": "S3",
-        "field": "visual",
-        "status": "needs_confirmation",
-        "reason": "素材只证明产品能力，未提供具体界面、控件位置或操作手势的证据",
-        "required_material": "与该镜头对应的产品截图/录屏或经确认的界面说明"
-      },
-      {
-        "shot_id": "S4",
-        "field": "visual",
-        "status": "needs_confirmation",
-        "reason": "素材只证明产品能力，未提供具体界面、控件位置或操作手势的证据",
-        "required_material": "与该镜头对应的产品截图/录屏或经确认的界面说明"
-      },
-      {
-        "shot_id": "S5",
-        "field": "visual",
-        "status": "needs_confirmation",
-        "reason": "素材只证明产品能力，未提供具体界面、控件位置或操作手势的证据",
-        "required_material": "与该镜头对应的产品截图/录屏或经确认的界面说明"
       }
     ],
     "brand_rule_id": "BRAND-001",
     "brand_version": "2026-10-28",
+    "creative_policy_id": "grounded-creative-v1",
     "manual_review_required": [
-      "标题与画面说明的语义、真实品牌合规及实际成片仍需人工复核",
-      "界面细节在补充素材确认前仅为创作示意，不能当作已验证产品功能"
+      "实际成片、真实品牌合规及素材原文本身仍需人工复核",
+      "界面占位须补充真实截图或录屏后再细化；不能从占位推断产品功能"
     ]
   },
   "revisions": {
@@ -262,10 +235,31 @@
         "passed": false,
         "issues": [
           {
+            "code": "UNAPPROVED_TITLE",
+            "field": "title",
+            "message": "标题须从不包含产品能力宣称的核准标题中选择",
+            "allowed_titles": [
+              "把想法放进画面",
+              "开始你的下一条视频",
+              "让画面和文字一起讲述"
+            ]
+          },
+          {
             "code": "UNSUPPORTED_CLAIM",
             "field": "shots.S1.segments",
             "message": "产品旁白必须使用该事实的核准表达",
             "fact_id": "P01.F1"
+          },
+          {
+            "code": "UNSUPPORTED_VISUAL",
+            "field": "shots.S1.visual",
+            "message": "画面只能使用中性镜头、界面占位或本镜已引用事实的原文文字卡；待确认标签不能授权新增产品能力",
+            "allowed_visuals": [
+              "创作者面向镜头，画面留白承接旁白。",
+              "创作者面对镜头，提出本条视频的主题。",
+              "桌面上的纸质分镜卡依次展开。",
+              "界面占位镜头：等待真实产品截图或录屏，当前仅呈现本镜旁白文字卡。"
+            ]
           },
           {
             "code": "NO_FACT",
@@ -305,9 +299,10 @@
         ],
         "brand_rule_id": "BRAND-001",
         "brand_version": "2026-10-28",
+        "creative_policy_id": "grounded-creative-v1",
         "manual_review_required": [
-          "标题与画面说明的语义、真实品牌合规及实际成片仍需人工复核",
-          "界面细节在补充素材确认前仅为创作示意，不能当作已验证产品功能"
+          "实际成片、真实品牌合规及素材原文本身仍需人工复核",
+          "界面占位须补充真实截图或录屏后再细化；不能从占位推断产品功能"
         ]
       },
       "duration": {
@@ -331,14 +326,27 @@
         "limitation": "启发式文本估算，非配音或成片实测"
       }
     },
-    "rev-275f7d718f4ed184": {
+    "rev-9187385c99f53442": {
       "script": {
-        "title": "轻剪演示版：字幕与竖屏创作",
+        "title": "让画面和文字一起讲述",
         "product_id": "clip-demo",
         "shots": [
           {
             "id": "S1",
-            "visual": "界面示意：点击‘字幕’按钮，输入文字，拖动调整位置。",
+            "visual": "界面占位镜头：等待真实产品截图或录屏，当前仅呈现本镜旁白文字卡。",
+            "segments": [
+              {
+                "kind": "bridge",
+                "text": "让画面和文字，一起讲述。",
+                "fact_id": ""
+              }
+            ],
+            "on_screen_text": "",
+            "hold_seconds": 3.5
+          },
+          {
+            "id": "S2",
+            "visual": "展示素材原文文字卡：轻剪演示版支持添加和编辑字幕。",
             "segments": [
               {
                 "kind": "fact",
@@ -350,8 +358,8 @@
             "hold_seconds": 3.5
           },
           {
-            "id": "S2",
-            "visual": "界面示意：选择画布尺寸为9:16竖屏。",
+            "id": "S3",
+            "visual": "展示素材原文文字卡：轻剪演示版支持设置9:16竖屏画布。",
             "segments": [
               {
                 "kind": "fact",
@@ -363,8 +371,8 @@
             "hold_seconds": 3.5
           },
           {
-            "id": "S3",
-            "visual": "界面示意：点击‘预览’按钮，查看当前剪辑效果。",
+            "id": "S4",
+            "visual": "展示素材原文文字卡：轻剪演示版支持预览当前剪辑效果。",
             "segments": [
               {
                 "kind": "fact",
@@ -376,21 +384,8 @@
             "hold_seconds": 3.5
           },
           {
-            "id": "S4",
-            "visual": "轻剪演示版 LOGO + 界面概览动效",
-            "segments": [
-              {
-                "kind": "bridge",
-                "text": "让画面和文字，一起讲述。",
-                "fact_id": ""
-              }
-            ],
-            "on_screen_text": "让画面和文字，一起讲述。",
-            "hold_seconds": 3.0
-          },
-          {
             "id": "S5",
-            "visual": "手机屏幕显示‘轻剪演示版’启动页，手指轻点图标",
+            "visual": "创作者面向镜头，画面留白承接旁白。",
             "segments": [
               {
                 "kind": "cta",
@@ -398,18 +393,18 @@
                 "fact_id": ""
               }
             ],
-            "on_screen_text": "试着剪出你的下一条视频。",
-            "hold_seconds": 3.0
+            "on_screen_text": "",
+            "hold_seconds": 3.5
           }
         ]
       },
-      "script_sha256": "275f7d718f4ed184d89992c15cca6d868d3d384f2eca6ebfda3c449a8041f312",
+      "script_sha256": "9187385c99f53442a4c7d6dce43e35fdd0d46c00f6d63c3982c8d378d5c01aa3",
       "rules": {
         "passed": true,
         "issues": [],
         "citations": [
           {
-            "shot_id": "S1",
+            "shot_id": "S2",
             "fact_id": "P01.F1",
             "material_id": "P01",
             "version": "2026-10-01",
@@ -417,7 +412,7 @@
             "used_text": "支持添加和编辑字幕。"
           },
           {
-            "shot_id": "S2",
+            "shot_id": "S3",
             "fact_id": "P02.F1",
             "material_id": "P02",
             "version": "2026-10-01",
@@ -425,7 +420,7 @@
             "used_text": "支持设置9:16竖屏画布。"
           },
           {
-            "shot_id": "S3",
+            "shot_id": "S4",
             "fact_id": "P03.F1",
             "material_id": "P03",
             "version": "2026-10-01",
@@ -440,46 +435,19 @@
             "status": "needs_confirmation",
             "reason": "素材只证明产品能力，未提供具体界面、控件位置或操作手势的证据",
             "required_material": "与该镜头对应的产品截图/录屏或经确认的界面说明"
-          },
-          {
-            "shot_id": "S2",
-            "field": "visual",
-            "status": "needs_confirmation",
-            "reason": "素材只证明产品能力，未提供具体界面、控件位置或操作手势的证据",
-            "required_material": "与该镜头对应的产品截图/录屏或经确认的界面说明"
-          },
-          {
-            "shot_id": "S3",
-            "field": "visual",
-            "status": "needs_confirmation",
-            "reason": "素材只证明产品能力，未提供具体界面、控件位置或操作手势的证据",
-            "required_material": "与该镜头对应的产品截图/录屏或经确认的界面说明"
-          },
-          {
-            "shot_id": "S4",
-            "field": "visual",
-            "status": "needs_confirmation",
-            "reason": "素材只证明产品能力，未提供具体界面、控件位置或操作手势的证据",
-            "required_material": "与该镜头对应的产品截图/录屏或经确认的界面说明"
-          },
-          {
-            "shot_id": "S5",
-            "field": "visual",
-            "status": "needs_confirmation",
-            "reason": "素材只证明产品能力，未提供具体界面、控件位置或操作手势的证据",
-            "required_material": "与该镜头对应的产品截图/录屏或经确认的界面说明"
           }
         ],
         "brand_rule_id": "BRAND-001",
         "brand_version": "2026-10-28",
+        "creative_policy_id": "grounded-creative-v1",
         "manual_review_required": [
-          "标题与画面说明的语义、真实品牌合规及实际成片仍需人工复核",
-          "界面细节在补充素材确认前仅为创作示意，不能当作已验证产品功能"
+          "实际成片、真实品牌合规及素材原文本身仍需人工复核",
+          "界面占位须补充真实截图或录屏后再细化；不能从占位推断产品功能"
         ]
       },
       "duration": {
         "profile_id": "zh-conservative-v1",
-        "estimated_total_seconds": 17.4,
+        "estimated_total_seconds": 17.6,
         "target_seconds": 30,
         "within_limit": true,
         "over_by_seconds": 0,
@@ -489,18 +457,18 @@
             "start_seconds": 0.0,
             "end_seconds": 3.5,
             "estimated_seconds": 3.5,
-            "speech_seconds": 2.94,
+            "speech_seconds": 3.23,
             "visual_hold_seconds": 3.5,
-            "subtitle_seconds": 1.5
+            "subtitle_seconds": 0.0
           },
           {
             "shot_id": "S2",
             "start_seconds": 3.5,
             "end_seconds": 7.0,
             "estimated_seconds": 3.5,
-            "speech_seconds": 3.23,
+            "speech_seconds": 2.94,
             "visual_hold_seconds": 3.5,
-            "subtitle_seconds": 1.67
+            "subtitle_seconds": 1.5
           },
           {
             "shot_id": "S3",
@@ -514,20 +482,20 @@
           {
             "shot_id": "S4",
             "start_seconds": 10.5,
-            "end_seconds": 13.8,
-            "estimated_seconds": 3.3,
+            "end_seconds": 14.0,
+            "estimated_seconds": 3.5,
             "speech_seconds": 3.23,
-            "visual_hold_seconds": 3.0,
+            "visual_hold_seconds": 3.5,
             "subtitle_seconds": 1.67
           },
           {
             "shot_id": "S5",
-            "start_seconds": 13.8,
-            "end_seconds": 17.4,
+            "start_seconds": 14.0,
+            "end_seconds": 17.6,
             "estimated_seconds": 3.6,
             "speech_seconds": 3.51,
-            "visual_hold_seconds": 3.0,
-            "subtitle_seconds": 1.83
+            "visual_hold_seconds": 3.5,
+            "subtitle_seconds": 0.0
           }
         ],
         "method": "逐镜取画面停留、含安全系数的口播、字幕阅读三者最大值后相加",
@@ -650,11 +618,42 @@
           }
         ],
         "count": 3,
-        "notice": "全部为虚构产品的合成测试资料，不代表小影科技或其产品的真实功能。"
+        "notice": "全部为虚构产品的合成测试资料，不代表小影科技或其产品的真实功能。",
+        "creative_options": {
+          "policy_id": "grounded-creative-v1",
+          "titles": [
+            "把想法放进画面",
+            "开始你的下一条视频",
+            "让画面和文字一起讲述"
+          ],
+          "neutral_visuals": [
+            "创作者面对镜头，提出本条视频的主题。",
+            "桌面上的纸质分镜卡依次展开。",
+            "创作者面向镜头，画面留白承接旁白。",
+            "界面占位镜头：等待真实产品截图或录屏，当前仅呈现本镜旁白文字卡。"
+          ],
+          "fact_visuals": [
+            {
+              "fact_id": "P01.F1",
+              "quote": "轻剪演示版支持添加和编辑字幕。",
+              "visual": "展示素材原文文字卡：轻剪演示版支持添加和编辑字幕。"
+            },
+            {
+              "fact_id": "P02.F1",
+              "quote": "轻剪演示版支持设置9:16竖屏画布。",
+              "visual": "展示素材原文文字卡：轻剪演示版支持设置9:16竖屏画布。"
+            },
+            {
+              "fact_id": "P03.F1",
+              "quote": "轻剪演示版支持预览当前剪辑效果。",
+              "visual": "展示素材原文文字卡：轻剪演示版支持预览当前剪辑效果。"
+            }
+          ]
+        }
       },
       "next_action": {
         "tool": "estimate_duration",
-        "decision_basis": "首次提交 initial_script 原样估时"
+        "decision_basis": "首次提交 initial_script 原样估时，用于后续规则检查"
       }
     },
     {
@@ -681,9 +680,9 @@
             }
           ]
         },
-        "reason": "首次提交 initial_script 原样估时"
+        "reason": "首次提交 initial_script 原样估时，用于后续规则检查"
       },
-      "decision_basis": "首次提交 initial_script 原样估时",
+      "decision_basis": "首次提交 initial_script 原样估时，用于后续规则检查",
       "observation_summary": "rev-a743d5eb39d5ade3: 4.7 秒 / 上限 30 秒；通过=True",
       "observation": {
         "ok": true,
@@ -710,7 +709,7 @@
       },
       "next_action": {
         "tool": "check_rules",
-        "decision_basis": "检查 initial_script 是否符合品牌规则与事实引用"
+        "decision_basis": "检查 initial_script 是否符合事实引用与品牌禁用词规则"
       }
     },
     {
@@ -719,10 +718,10 @@
       "tool": "check_rules",
       "parameters": {
         "revision_id": "rev-a743d5eb39d5ade3",
-        "reason": "检查 initial_script 是否符合品牌规则与事实引用"
+        "reason": "检查 initial_script 是否符合事实引用与品牌禁用词规则"
       },
-      "decision_basis": "检查 initial_script 是否符合品牌规则与事实引用",
-      "observation_summary": "rev-a743d5eb39d5ade3: 规则通过=False；问题数=6",
+      "decision_basis": "检查 initial_script 是否符合事实引用与品牌禁用词规则",
+      "observation_summary": "rev-a743d5eb39d5ade3: 规则通过=False；问题数=8",
       "observation": {
         "ok": true,
         "revision_id": "rev-a743d5eb39d5ade3",
@@ -730,10 +729,31 @@
         "passed": false,
         "issues": [
           {
+            "code": "UNAPPROVED_TITLE",
+            "field": "title",
+            "message": "标题须从不包含产品能力宣称的核准标题中选择",
+            "allowed_titles": [
+              "把想法放进画面",
+              "开始你的下一条视频",
+              "让画面和文字一起讲述"
+            ]
+          },
+          {
             "code": "UNSUPPORTED_CLAIM",
             "field": "shots.S1.segments",
             "message": "产品旁白必须使用该事实的核准表达",
             "fact_id": "P01.F1"
+          },
+          {
+            "code": "UNSUPPORTED_VISUAL",
+            "field": "shots.S1.visual",
+            "message": "画面只能使用中性镜头、界面占位或本镜已引用事实的原文文字卡；待确认标签不能授权新增产品能力",
+            "allowed_visuals": [
+              "创作者面向镜头，画面留白承接旁白。",
+              "创作者面对镜头，提出本条视频的主题。",
+              "桌面上的纸质分镜卡依次展开。",
+              "界面占位镜头：等待真实产品截图或录屏，当前仅呈现本镜旁白文字卡。"
+            ]
           },
           {
             "code": "NO_FACT",
@@ -773,28 +793,105 @@
         ],
         "brand_rule_id": "BRAND-001",
         "brand_version": "2026-10-28",
+        "creative_policy_id": "grounded-creative-v1",
         "manual_review_required": [
-          "标题与画面说明的语义、真实品牌合规及实际成片仍需人工复核",
-          "界面细节在补充素材确认前仅为创作示意，不能当作已验证产品功能"
+          "实际成片、真实品牌合规及素材原文本身仍需人工复核",
+          "界面占位须补充真实截图或录屏后再细化；不能从占位推断产品功能"
         ]
       },
       "next_action": {
         "tool": "estimate_duration",
-        "decision_basis": "已按规则重写脚本：替换违规表述、补全主题镜头、加入核准 bridge/cta"
+        "decision_basis": ""
       }
     },
     {
       "step": 4,
       "model_round": 4,
       "tool": "estimate_duration",
+      "parameters": {},
+      "decision_basis": "",
+      "observation_summary": "INVALID_JSON: 工具参数须为有效 JSON 对象，且不超过 40000 字符",
+      "observation": {
+        "ok": false,
+        "error": {
+          "code": "INVALID_JSON",
+          "message": "工具参数须为有效 JSON 对象，且不超过 40000 字符"
+        }
+      },
+      "next_action": {
+        "tool": "estimate_duration",
+        "decision_basis": ""
+      },
+      "raw_arguments": "{\"script\": {\"title\": \"让画面和文字一起讲述\", \"product_id\": \"clip-demo\", \"shots\": [{\"id\": \"S1\", \"visual\": \"界面占位镜头：等待真实产品截图或录屏，当前仅呈现本镜旁白文字卡。\", \"segments\": [{\"kind\": \"bridge\", \"text\": \"让画面和文字，一起讲述。\", \"fact_id\": \"\"}], \"on_screen_text\": \"让画面和文字，一起讲述。\", \"hold_seconds\": 3.5}, {\"id\": \"S2\", \"visual\": \"展示素材原文文字卡：轻剪演示版支持添加和编辑字幕。\", \"segments\": [{\"kind\": \"fact\", \"text\": \"支持添加和编辑字幕。\", \"fact_id\": \"P01.F1\"}], \"on_screen_text\": \"支持添加和编辑字幕。\", \"hold_seconds\": 3.5}, {\"id\": \"S3\", \"visual\": \"展示素材原文文字卡：轻剪演示版支持设置9:16竖屏画布。\", \"segments\": [{\"kind\": \"fact\", \"text\": \"支持设置9:16竖屏画布。\", \"fact_id\": \"P02.F1\"}], \"on_screen_text\": \"支持设置9:16竖屏画布。\", \"hold_seconds\": 3.5}, {\"id\": \"S4\", \"visual\": \"展示素材原文文字卡：轻剪演示版支持预览当前剪辑效果。\", \"segments\": [{\"kind\": \"fact\", \"text\": \"支持预览当前剪辑效果。\", \"fact_id\": \"P03.F1\"}], \"on_screen_text\": \"支持预览当前剪辑效果。\", \"hold_seconds\": 3.5}, {\"id\": \"S5\", \"visual\": \"创作者面向镜头，画面留白承接旁白。\", \"segments\": [{\"kind\": \"cta\", \"text\": \"试着剪出你的下一条视频。\", \"fact_id\": \"\"}], \"on_screen_text\": \"试着剪出你的下一条视频。\", \"hold_seconds\": 3.5}], \"reason\": \"已按规则重写脚本：更换标题、删除禁用词、使用核准表达、补全结构、选用合规 visual\"}",
+      "history_arguments_normalized": true
+    },
+    {
+      "step": 5,
+      "model_round": 5,
+      "tool": "estimate_duration",
+      "parameters": {},
+      "decision_basis": "",
+      "observation_summary": "INVALID_JSON: 工具参数须为有效 JSON 对象，且不超过 40000 字符",
+      "observation": {
+        "ok": false,
+        "error": {
+          "code": "INVALID_JSON",
+          "message": "工具参数须为有效 JSON 对象，且不超过 40000 字符"
+        }
+      },
+      "next_action": {
+        "tool": "estimate_duration",
+        "decision_basis": ""
+      },
+      "raw_arguments": "{\"script\": {\"title\": \"让画面和文字一起讲述\", \"product_id\": \"clip-demo\", \"shots\": [{\"id\": \"S1\", \"visual\": \"界面占位镜头：等待真实产品截图或录屏，当前仅呈现本镜旁白文字卡。\", \"segments\": [{\"kind\": \"bridge\", \"text\": \"让画面和文字，一起讲述。\", \"fact_id\": \"\"}], \"on_screen_text\": \"让画面和文字，一起讲述。\", \"hold_seconds\": 3.5}, {\"id\": \"S2\", \"visual\": \"展示素材原文文字卡：轻剪演示版支持添加和编辑字幕。\", \"segments\": [{\"kind\": \"fact\", \"text\": \"支持添加和编辑字幕。\", \"fact_id\": \"P01.F1\"}], \"on_screen_text\": \"支持添加和编辑字幕。\", \"hold_seconds\": 3.5}, {\"id\": \"S3\", \"visual\": \"展示素材原文文字卡：轻剪演示版支持设置9:16竖屏画布。\", \"segments\": [{\"kind\": \"fact\", \"text\": \"支持设置9:16竖屏画布。\", \"fact_id\": \"P02.F1\"}], \"on_screen_text\": \"支持设置9:16竖屏画布。\", \"hold_seconds\": 3.5}, {\"id\": \"S4\", \"visual\": \"展示素材原文文字卡：轻剪演示版支持预览当前剪辑效果。\", \"segments\": [{\"kind\": \"fact\", \"text\": \"支持预览当前剪辑效果。\", \"fact_id\": \"P03.F1\"}], \"on_screen_text\": \"支持预览当前剪辑效果。\", \"hold_seconds\": 3.5}, {\"id\": \"S5\", \"visual\": \"创作者面向镜头，画面留白承接旁白。\", \"segments\": [{\"kind\": \"cta\", \"text\": \"试着剪出你的下一条视频。\", \"fact_id\": \"\"}], \"on_screen_text\": \"试着剪出你的下一条视频。\", \"hold_seconds\": 3.5}], \"reason\": \"已按规则重写脚本：选用核准标题、全部使用核准表达、visual 合规、结构含 bridge+3fact+cta，每镜 hold_seconds=3.5s\"}",
+      "history_arguments_normalized": true
+    },
+    {
+      "step": 6,
+      "model_round": 6,
+      "tool": "estimate_duration",
+      "parameters": {},
+      "decision_basis": "",
+      "observation_summary": "INVALID_JSON: 工具参数须为有效 JSON 对象，且不超过 40000 字符",
+      "observation": {
+        "ok": false,
+        "error": {
+          "code": "INVALID_JSON",
+          "message": "工具参数须为有效 JSON 对象，且不超过 40000 字符"
+        }
+      },
+      "next_action": {
+        "tool": "estimate_duration",
+        "decision_basis": "提交改写后完整脚本：含 bridge + 3 条核准事实 + cta，全部 visual 合规，无禁用词"
+      },
+      "raw_arguments": "{\"script\": {\"title\": \"让画面和文字一起讲述\", \"product_id\": \"clip-demo\", \"shots\": [{\"id\": \"S1\", \"visual\": \"界面占位镜头：等待真实产品截图或录屏，当前仅呈现本镜旁白文字卡。\", \"segments\": [{\"kind\": \"bridge\", \"text\": \"让画面和文字，一起讲述。\", \"fact_id\": \"\"}], \"on_screen_text\": \"\", \"hold_seconds\": 3.5}, {\"id\": \"S2\", \"visual\": \"展示素材原文文字卡：轻剪演示版支持添加和编辑字幕。\", \"segments\": [{\"kind\": \"fact\", \"text\": \"支持添加和编辑字幕。\", \"fact_id\": \"P01.F1\"}], \"on_screen_text\": \"支持添加和编辑字幕。\", \"hold_seconds\": 3.5}, {\"id\": \"S3\", \"visual\": \"展示素材原文文字卡：轻剪演示版支持设置9:16竖屏画布。\", \"segments\": [{\"kind\": \"fact\", \"text\": \"支持设置9:16竖屏画布。\", \"fact_id\": \"P02.F1\"}], \"on_screen_text\": \"支持设置9:16竖屏画布。\", \"hold_seconds\": 3.5}, {\"id\": \"S4\", \"visual\": \"展示素材原文文字卡：轻剪演示版支持预览当前剪辑效果。\", \"segments\": [{\"kind\": \"fact\", \"text\": \"支持预览当前剪辑效果。\", \"fact_id\": \"P03.F1\"}], \"on_screen_text\": \"支持预览当前剪辑效果。\", \"hold_seconds\": 3.5}, {\"id\": \"S5\", \"visual\": \"创作者面向镜头，画面留白承接旁白。\", \"segments\": [{\"kind\": \"cta\", \"text\": \"试着剪出你的下一条视频。\", \"fact_id\": \"\"}], \"on_screen_text\": \"\", \"hold_seconds\": 3.5}], \"reason\": \"提交改写后完整脚本：含 bridge + 3 个核准事实 + cta，全部 visual 合规，无禁用词\"}",
+      "history_arguments_normalized": true
+    },
+    {
+      "step": 7,
+      "model_round": 7,
+      "tool": "estimate_duration",
       "parameters": {
         "script": {
-          "title": "轻剪演示版：字幕与竖屏创作",
+          "title": "让画面和文字一起讲述",
           "product_id": "clip-demo",
           "shots": [
             {
               "id": "S1",
-              "visual": "界面示意：点击‘字幕’按钮，输入文字，拖动调整位置。",
+              "visual": "界面占位镜头：等待真实产品截图或录屏，当前仅呈现本镜旁白文字卡。",
+              "segments": [
+                {
+                  "kind": "bridge",
+                  "text": "让画面和文字，一起讲述。",
+                  "fact_id": ""
+                }
+              ],
+              "on_screen_text": "",
+              "hold_seconds": 3.5
+            },
+            {
+              "id": "S2",
+              "visual": "展示素材原文文字卡：轻剪演示版支持添加和编辑字幕。",
               "segments": [
                 {
                   "kind": "fact",
@@ -806,8 +903,8 @@
               "hold_seconds": 3.5
             },
             {
-              "id": "S2",
-              "visual": "界面示意：选择画布尺寸为9:16竖屏。",
+              "id": "S3",
+              "visual": "展示素材原文文字卡：轻剪演示版支持设置9:16竖屏画布。",
               "segments": [
                 {
                   "kind": "fact",
@@ -819,8 +916,8 @@
               "hold_seconds": 3.5
             },
             {
-              "id": "S3",
-              "visual": "界面示意：点击‘预览’按钮，查看当前剪辑效果。",
+              "id": "S4",
+              "visual": "展示素材原文文字卡：轻剪演示版支持预览当前剪辑效果。",
               "segments": [
                 {
                   "kind": "fact",
@@ -832,21 +929,8 @@
               "hold_seconds": 3.5
             },
             {
-              "id": "S4",
-              "visual": "轻剪演示版 LOGO + 界面概览动效",
-              "segments": [
-                {
-                  "kind": "bridge",
-                  "text": "让画面和文字，一起讲述。",
-                  "fact_id": ""
-                }
-              ],
-              "on_screen_text": "让画面和文字，一起讲述。",
-              "hold_seconds": 3.0
-            },
-            {
               "id": "S5",
-              "visual": "手机屏幕显示‘轻剪演示版’启动页，手指轻点图标",
+              "visual": "创作者面向镜头，画面留白承接旁白。",
               "segments": [
                 {
                   "kind": "cta",
@@ -854,21 +938,21 @@
                   "fact_id": ""
                 }
               ],
-              "on_screen_text": "试着剪出你的下一条视频。",
-              "hold_seconds": 3.0
+              "on_screen_text": "",
+              "hold_seconds": 3.5
             }
           ]
         },
-        "reason": "已按规则重写脚本：替换违规表述、补全主题镜头、加入核准 bridge/cta"
+        "reason": "提交改写后完整脚本：含 bridge + 3 条核准事实 + cta，全部 visual 合规，无禁用词"
       },
-      "decision_basis": "已按规则重写脚本：替换违规表述、补全主题镜头、加入核准 bridge/cta",
-      "observation_summary": "rev-275f7d718f4ed184: 17.4 秒 / 上限 30 秒；通过=True",
+      "decision_basis": "提交改写后完整脚本：含 bridge + 3 条核准事实 + cta，全部 visual 合规，无禁用词",
+      "observation_summary": "rev-9187385c99f53442: 17.6 秒 / 上限 30 秒；通过=True",
       "observation": {
         "ok": true,
-        "revision_id": "rev-275f7d718f4ed184",
-        "script_sha256": "275f7d718f4ed184d89992c15cca6d868d3d384f2eca6ebfda3c449a8041f312",
+        "revision_id": "rev-9187385c99f53442",
+        "script_sha256": "9187385c99f53442a4c7d6dce43e35fdd0d46c00f6d63c3982c8d378d5c01aa3",
         "profile_id": "zh-conservative-v1",
-        "estimated_total_seconds": 17.4,
+        "estimated_total_seconds": 17.6,
         "target_seconds": 30,
         "within_limit": true,
         "over_by_seconds": 0,
@@ -878,18 +962,18 @@
             "start_seconds": 0.0,
             "end_seconds": 3.5,
             "estimated_seconds": 3.5,
-            "speech_seconds": 2.94,
+            "speech_seconds": 3.23,
             "visual_hold_seconds": 3.5,
-            "subtitle_seconds": 1.5
+            "subtitle_seconds": 0.0
           },
           {
             "shot_id": "S2",
             "start_seconds": 3.5,
             "end_seconds": 7.0,
             "estimated_seconds": 3.5,
-            "speech_seconds": 3.23,
+            "speech_seconds": 2.94,
             "visual_hold_seconds": 3.5,
-            "subtitle_seconds": 1.67
+            "subtitle_seconds": 1.5
           },
           {
             "shot_id": "S3",
@@ -903,20 +987,20 @@
           {
             "shot_id": "S4",
             "start_seconds": 10.5,
-            "end_seconds": 13.8,
-            "estimated_seconds": 3.3,
+            "end_seconds": 14.0,
+            "estimated_seconds": 3.5,
             "speech_seconds": 3.23,
-            "visual_hold_seconds": 3.0,
+            "visual_hold_seconds": 3.5,
             "subtitle_seconds": 1.67
           },
           {
             "shot_id": "S5",
-            "start_seconds": 13.8,
-            "end_seconds": 17.4,
+            "start_seconds": 14.0,
+            "end_seconds": 17.6,
             "estimated_seconds": 3.6,
             "speech_seconds": 3.51,
-            "visual_hold_seconds": 3.0,
-            "subtitle_seconds": 1.83
+            "visual_hold_seconds": 3.5,
+            "subtitle_seconds": 0.0
           }
         ],
         "method": "逐镜取画面停留、含安全系数的口播、字幕阅读三者最大值后相加",
@@ -924,28 +1008,28 @@
       },
       "next_action": {
         "tool": "check_rules",
-        "decision_basis": "检查重写后脚本是否符合事实引用与品牌规则"
+        "decision_basis": "检查改写后脚本是否符合事实引用、品牌规则与结构要求"
       }
     },
     {
-      "step": 5,
-      "model_round": 5,
+      "step": 8,
+      "model_round": 8,
       "tool": "check_rules",
       "parameters": {
-        "revision_id": "rev-275f7d718f4ed184",
-        "reason": "检查重写后脚本是否符合事实引用与品牌规则"
+        "revision_id": "rev-9187385c99f53442",
+        "reason": "检查改写后脚本是否符合事实引用、品牌规则与结构要求"
       },
-      "decision_basis": "检查重写后脚本是否符合事实引用与品牌规则",
-      "observation_summary": "rev-275f7d718f4ed184: 规则通过=True；问题数=0",
+      "decision_basis": "检查改写后脚本是否符合事实引用、品牌规则与结构要求",
+      "observation_summary": "rev-9187385c99f53442: 规则通过=True；问题数=0",
       "observation": {
         "ok": true,
-        "revision_id": "rev-275f7d718f4ed184",
-        "script_sha256": "275f7d718f4ed184d89992c15cca6d868d3d384f2eca6ebfda3c449a8041f312",
+        "revision_id": "rev-9187385c99f53442",
+        "script_sha256": "9187385c99f53442a4c7d6dce43e35fdd0d46c00f6d63c3982c8d378d5c01aa3",
         "passed": true,
         "issues": [],
         "citations": [
           {
-            "shot_id": "S1",
+            "shot_id": "S2",
             "fact_id": "P01.F1",
             "material_id": "P01",
             "version": "2026-10-01",
@@ -953,7 +1037,7 @@
             "used_text": "支持添加和编辑字幕。"
           },
           {
-            "shot_id": "S2",
+            "shot_id": "S3",
             "fact_id": "P02.F1",
             "material_id": "P02",
             "version": "2026-10-01",
@@ -961,7 +1045,7 @@
             "used_text": "支持设置9:16竖屏画布。"
           },
           {
-            "shot_id": "S3",
+            "shot_id": "S4",
             "fact_id": "P03.F1",
             "material_id": "P03",
             "version": "2026-10-01",
@@ -976,67 +1060,40 @@
             "status": "needs_confirmation",
             "reason": "素材只证明产品能力，未提供具体界面、控件位置或操作手势的证据",
             "required_material": "与该镜头对应的产品截图/录屏或经确认的界面说明"
-          },
-          {
-            "shot_id": "S2",
-            "field": "visual",
-            "status": "needs_confirmation",
-            "reason": "素材只证明产品能力，未提供具体界面、控件位置或操作手势的证据",
-            "required_material": "与该镜头对应的产品截图/录屏或经确认的界面说明"
-          },
-          {
-            "shot_id": "S3",
-            "field": "visual",
-            "status": "needs_confirmation",
-            "reason": "素材只证明产品能力，未提供具体界面、控件位置或操作手势的证据",
-            "required_material": "与该镜头对应的产品截图/录屏或经确认的界面说明"
-          },
-          {
-            "shot_id": "S4",
-            "field": "visual",
-            "status": "needs_confirmation",
-            "reason": "素材只证明产品能力，未提供具体界面、控件位置或操作手势的证据",
-            "required_material": "与该镜头对应的产品截图/录屏或经确认的界面说明"
-          },
-          {
-            "shot_id": "S5",
-            "field": "visual",
-            "status": "needs_confirmation",
-            "reason": "素材只证明产品能力，未提供具体界面、控件位置或操作手势的证据",
-            "required_material": "与该镜头对应的产品截图/录屏或经确认的界面说明"
           }
         ],
         "brand_rule_id": "BRAND-001",
         "brand_version": "2026-10-28",
+        "creative_policy_id": "grounded-creative-v1",
         "manual_review_required": [
-          "标题与画面说明的语义、真实品牌合规及实际成片仍需人工复核",
-          "界面细节在补充素材确认前仅为创作示意，不能当作已验证产品功能"
+          "实际成片、真实品牌合规及素材原文本身仍需人工复核",
+          "界面占位须补充真实截图或录屏后再细化；不能从占位推断产品功能"
         ]
       },
       "next_action": {
         "tool": "finish",
-        "decision_basis": "脚本已满足全部约束且工具验证通过"
+        "decision_basis": "两项工具检查均通过，无未决规则问题"
       }
     },
     {
-      "step": 6,
-      "model_round": 6,
+      "step": 9,
+      "model_round": 9,
       "tool": "finish",
       "parameters": {
         "status": "completed",
-        "message": "脚本已通过时长与规则双检：5镜共17.4秒，覆盖字幕、竖屏画布、预览三大功能，使用全部核准事实与品牌语；所有visual描述均为示意，需后续确认产品界面素材后方可实拍。",
-        "revision_id": "rev-275f7d718f4ed184",
+        "message": "脚本已通过全部检查：标题、事实引用、品牌合规、结构完整（含 bridge + 3 条核准事实 + cta），总时长 17.6 秒，符合 30 秒目标。S1 使用品牌核准 bridge_line，S2–S4 均使用检索到的 fact_visuals.visual 及 approved_lines，S5 使用 neutral_visuals。注意：S1 的 '界面占位镜头' 需后续补充真实截图或录屏；当前交付为合规可编辑文本脚本。",
+        "revision_id": "rev-9187385c99f53442",
         "missing_information": [],
-        "reason": "脚本已满足全部约束且工具验证通过"
+        "reason": "两项工具检查均通过，无未决规则问题"
       },
-      "decision_basis": "脚本已满足全部约束且工具验证通过",
+      "decision_basis": "两项工具检查均通过，无未决规则问题",
       "observation_summary": "结束状态: completed",
       "observation": {
         "ok": true,
         "accepted": true,
         "status": "completed",
-        "message": "脚本已通过时长与规则双检：5镜共17.4秒，覆盖字幕、竖屏画布、预览三大功能，使用全部核准事实与品牌语；所有visual描述均为示意，需后续确认产品界面素材后方可实拍。",
-        "revision_id": "rev-275f7d718f4ed184",
+        "message": "脚本已通过全部检查：标题、事实引用、品牌合规、结构完整（含 bridge + 3 条核准事实 + cta），总时长 17.6 秒，符合 30 秒目标。S1 使用品牌核准 bridge_line，S2–S4 均使用检索到的 fact_visuals.visual 及 approved_lines，S5 使用 neutral_visuals。注意：S1 的 '界面占位镜头' 需后续补充真实截图或录屏；当前交付为合规可编辑文本脚本。",
+        "revision_id": "rev-9187385c99f53442",
         "missing_information": []
       },
       "next_action": {
@@ -1046,96 +1103,135 @@
     }
   ],
   "metrics": {
-    "model_rounds": 6,
-    "tool_calls": 6,
+    "model_rounds": 9,
+    "tool_calls": 9,
     "max_steps": 14,
     "max_tool_calls": 24,
-    "elapsed_seconds": 34.968,
+    "elapsed_seconds": 68.406,
     "model_calls": [
       {
         "model": "qwen-plus",
-        "response_id": "chatcmpl-f5a09b21-8e1c-90ed-8a74-d02512d9f07f",
+        "response_id": "chatcmpl-75f74280-4163-9129-ae23-b5d540836a0a",
         "usage": {
-          "prompt_tokens": 2013,
-          "total_tokens": 2066,
+          "prompt_tokens": 2337,
+          "total_tokens": 2390,
           "completion_tokens": 53,
           "prompt_tokens_details": {
-            "cached_tokens": 1792
+            "cached_tokens": 2112
           }
         },
-        "latency_seconds": 1.797
+        "latency_seconds": 1.484
       },
       {
         "model": "qwen-plus",
-        "response_id": "chatcmpl-610acf9b-9919-9e5d-9d30-ec750f9391ce",
+        "response_id": "chatcmpl-384a7024-e3a7-9027-8d8a-0a0b16d9e72b",
         "usage": {
-          "prompt_tokens": 2619,
-          "total_tokens": 2753,
-          "completion_tokens": 134,
+          "prompt_tokens": 3214,
+          "total_tokens": 3353,
+          "completion_tokens": 139,
+          "prompt_tokens_details": {
+            "cached_tokens": 2112
+          }
+        },
+        "latency_seconds": 3.469
+      },
+      {
+        "model": "qwen-plus",
+        "response_id": "chatcmpl-bf679064-0c74-95ad-ae4e-e8ccb00e2c5f",
+        "usage": {
+          "prompt_tokens": 3611,
+          "total_tokens": 3662,
+          "completion_tokens": 51,
+          "prompt_tokens_details": {
+            "cached_tokens": 2112
+          }
+        },
+        "latency_seconds": 1.484
+      },
+      {
+        "model": "qwen-plus",
+        "response_id": "chatcmpl-b87039d4-3204-9046-85c8-50a1cd997bf3",
+        "usage": {
+          "prompt_tokens": 4336,
+          "total_tokens": 5282,
+          "completion_tokens": 946,
+          "prompt_tokens_details": {
+            "cached_tokens": 2112
+          }
+        },
+        "latency_seconds": 21.266
+      },
+      {
+        "model": "qwen-plus",
+        "response_id": "chatcmpl-9f37308f-c542-9c1f-ae78-abd62e9289b6",
+        "usage": {
+          "prompt_tokens": 4848,
+          "total_tokens": 5363,
+          "completion_tokens": 515,
+          "prompt_tokens_details": {
+            "cached_tokens": 4224
+          }
+        },
+        "latency_seconds": 11.688
+      },
+      {
+        "model": "qwen-plus",
+        "response_id": "chatcmpl-68813acc-7fb5-9af2-8c47-0dbb90522c33",
+        "usage": {
+          "prompt_tokens": 4915,
+          "total_tokens": 5403,
+          "completion_tokens": 488,
           "prompt_tokens_details": {
             "cached_tokens": 0
           }
         },
-        "latency_seconds": 3.343
+        "latency_seconds": 11.328
       },
       {
         "model": "qwen-plus",
-        "response_id": "chatcmpl-97f68eb6-0070-93cf-aa44-286b2fbed04f",
+        "response_id": "chatcmpl-609664f6-96fc-9b9b-883b-b07a66b4e678",
         "usage": {
-          "prompt_tokens": 3011,
-          "total_tokens": 3059,
-          "completion_tokens": 48,
+          "prompt_tokens": 4982,
+          "total_tokens": 5471,
+          "completion_tokens": 489,
           "prompt_tokens_details": {
-            "cached_tokens": 1792
+            "cached_tokens": 4800
           }
         },
-        "latency_seconds": 1.688
+        "latency_seconds": 11.297
       },
       {
         "model": "qwen-plus",
-        "response_id": "chatcmpl-5b9ae9a9-1ce3-9465-bbf3-1c5664223372",
+        "response_id": "chatcmpl-3bb68eea-d4ec-97df-955b-843a394604b0",
         "usage": {
-          "prompt_tokens": 3540,
-          "total_tokens": 4372,
-          "completion_tokens": 832,
+          "prompt_tokens": 6003,
+          "total_tokens": 6061,
+          "completion_tokens": 58,
           "prompt_tokens_details": {
-            "cached_tokens": 1792
+            "cached_tokens": 2240
           }
         },
-        "latency_seconds": 18.703
+        "latency_seconds": 1.796
       },
       {
         "model": "qwen-plus",
-        "response_id": "chatcmpl-3a8580ec-033b-9dbb-a572-65154d175fb0",
+        "response_id": "chatcmpl-70d357ad-9067-9133-b0f8-fc8e9ee352cd",
         "usage": {
-          "prompt_tokens": 4902,
-          "total_tokens": 4956,
-          "completion_tokens": 54,
+          "prompt_tokens": 6573,
+          "total_tokens": 6759,
+          "completion_tokens": 186,
           "prompt_tokens_details": {
-            "cached_tokens": 3456
+            "cached_tokens": 4736
           }
         },
-        "latency_seconds": 1.578
-      },
-      {
-        "model": "qwen-plus",
-        "response_id": "chatcmpl-eb8141be-9636-9de0-944c-654f37fbef7d",
-        "usage": {
-          "prompt_tokens": 5714,
-          "total_tokens": 6041,
-          "completion_tokens": 327,
-          "prompt_tokens_details": {
-            "cached_tokens": 0
-          }
-        },
-        "latency_seconds": 7.859
+        "latency_seconds": 4.578
       }
     ]
   },
   "limitations": [
     "仅生成脚本，未生成或发布视频",
     "时长为文本启发式估算，非真实配音实测",
-    "产品旁白采用核准表达；标题与画面说明仍需人工复核",
+    "旁白、标题与画面采用受控表达，限制自由创作；素材与实际成片仍需人工复核",
     "离线 Mock 只能验证流程，不能证明真实模型决策效果"
   ]
 }

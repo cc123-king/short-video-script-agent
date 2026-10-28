@@ -28,6 +28,10 @@ def assess(result, scenario):
         failed = [r for r in result["revisions"].values() if r.get("rules") and not r["rules"]["passed"]]
         check("实际检测到规则问题", failed)
         check("规则反馈后修改脚本", failed and len(result["revisions"]) >= 2)
+    if scenario.get("require_visual_repair"):
+        rejected = [r for r in result["revisions"].values() if r.get("rules") and any(issue["code"] == "UNSUPPORTED_VISUAL" for issue in r["rules"]["issues"])]
+        check("实际拒绝无依据画面且不被待确认标签豁免", rejected)
+        check("画面反馈后产生新脚本", rejected and len(result["revisions"]) >= 2)
     if scenario.get("require_tool_error"):
         check("记录真实注入的工具失败", any(not event["observation"].get("ok") and event["observation"].get("error", {}).get("code") == "INJECTED_TOOL_FAILURE" for event in result["trace"]))
     if scenario.get("require_no_script"):

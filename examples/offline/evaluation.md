@@ -1,6 +1,6 @@
 # 场景验证结果
 
-执行模式：**offline_mock**；通过 10/10；不同工具路径 7。
+执行模式：**offline_mock**；通过 11/11；不同工具路径 7。
 
 离线 Mock 结果不能证明真实模型动态决策；场景断言通过不等于完整语义质量验证。
 
@@ -16,3 +16,4 @@
 | short_target | completed | completed | True | [报告](short_target/report.md) / [完整记录](short_target/result.json) |
 | impossible_target | blocked, incomplete, needs_input | blocked | True | [报告](impossible_target/report.md) / [完整记录](impossible_target/result.json) |
 | changed_material | completed | completed | True | [报告](changed_material/report.md) / [完整记录](changed_material/result.json) |
+| visual_repair | completed | completed | True | [报告](visual_repair/report.md) / [完整记录](visual_repair/result.json) |

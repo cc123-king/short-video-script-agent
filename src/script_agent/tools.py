@@ -4,6 +4,7 @@ import math
 import re
 
 from .domain import ValidationError, digest, missing_fields, narration, text, validate_script
+from .content_policy import NEUTRAL_TITLES, NEUTRAL_VISUALS, POLICY_ID, creative_options, fact_visual
 
 
 def speech_units(value):
@@ -28,6 +29,8 @@ def estimate(script, target, profile):
 def inspect_rules(script, facts, brand, product_id):
     issues, citations, pending = [], [], []
     approved_all = set(brand["bridge_lines"] + brand["cta_lines"])
+    if script["title"] not in NEUTRAL_TITLES:
+        issues.append({"code": "UNAPPROVED_TITLE", "field": "title", "message": "标题须从不包含产品能力宣称的核准标题中选择", "allowed_titles": list(NEUTRAL_TITLES)})
     if script["product_id"] != product_id:
         issues.append({"code": "PRODUCT_MISMATCH", "field": "product_id", "message": "脚本产品与用户请求不一致"})
     for shot in script["shots"]:
@@ -35,6 +38,7 @@ def inspect_rules(script, facts, brand, product_id):
             pending.append({"shot_id": shot["id"], "field": "visual", "status": "needs_confirmation", "reason": "素材只证明产品能力，未提供具体界面、控件位置或操作手势的证据", "required_material": "与该镜头对应的产品截图/录屏或经确认的界面说明"})
         allowed_screen = set(approved_all)
         allowed_screen.add(narration(shot))
+        allowed_visuals = set(NEUTRAL_VISUALS)
         for segment in shot["segments"]:
             field = f"shots.{shot['id']}.segments"
             if segment["kind"] == "fact":
@@ -45,11 +49,14 @@ def inspect_rules(script, facts, brand, product_id):
                     issues.append({"code": "UNSUPPORTED_CLAIM", "field": field, "message": "产品旁白必须使用该事实的核准表达", "fact_id": segment["fact_id"]})
                 else:
                     allowed_screen.update([fact["text"], *fact["approved_lines"]])
+                    allowed_visuals.add(fact_visual(fact))
                     citations.append({"shot_id": shot["id"], "fact_id": fact["id"], "material_id": fact["material_id"], "version": fact["version"], "quote": fact["text"], "used_text": segment["text"]})
             else:
                 group = brand["bridge_lines"] if segment["kind"] == "bridge" else brand["cta_lines"]
                 if segment["text"] not in group or segment["fact_id"]:
                     issues.append({"code": "UNAPPROVED_COPY", "field": field, "message": "过渡语/行动语必须使用品牌核准表达且不带事实 ID"})
+        if shot["visual"] not in allowed_visuals:
+            issues.append({"code": "UNSUPPORTED_VISUAL", "field": f"shots.{shot['id']}.visual", "message": "画面只能使用中性镜头、界面占位或本镜已引用事实的原文文字卡；待确认标签不能授权新增产品能力", "allowed_visuals": sorted(allowed_visuals)})
         if shot["on_screen_text"] and shot["on_screen_text"] not in allowed_screen:
             issues.append({"code": "UNSUPPORTED_CAPTION", "field": f"shots.{shot['id']}.on_screen_text", "message": "屏幕文字须为本镜完整旁白或本镜已引用的核准表达"})
     if not citations:
@@ -61,7 +68,7 @@ def inspect_rules(script, facts, brand, product_id):
         for pattern in brand["forbidden_patterns"]:
             if re.search(pattern, content, re.IGNORECASE):
                 issues.append({"code": "BRAND_RISK", "field": field, "message": f"命中合成品牌限制: {pattern}"})
-    return {"passed": not issues, "issues": issues, "citations": citations, "pending_confirmations": pending, "brand_rule_id": brand["id"], "brand_version": brand["version"], "manual_review_required": ["标题与画面说明的语义、真实品牌合规及实际成片仍需人工复核", "界面细节在补充素材确认前仅为创作示意，不能当作已验证产品功能"]}
+    return {"passed": not issues, "issues": issues, "citations": citations, "pending_confirmations": pending, "brand_rule_id": brand["id"], "brand_version": brand["version"], "creative_policy_id": POLICY_ID, "manual_review_required": ["实际成片、真实品牌合规及素材原文本身仍需人工复核", "界面占位须补充真实截图或录屏后再细化；不能从占位推断产品功能"]}
 
 
 class ToolSession:
@@ -95,7 +102,7 @@ class ToolSession:
         for material in results:
             for fact in material["facts"]:
                 self.facts[fact["id"]] = {**copy.deepcopy(fact), "material_id": material["id"], "version": material["version"]}
-        return {"ok": True, "query": query, "materials": results, "count": len(results), "notice": self.knowledge.catalog["notice"]}
+        return {"ok": True, "query": query, "materials": results, "count": len(results), "notice": self.knowledge.catalog["notice"], "creative_options": creative_options(self.facts)}
 
     def estimate_duration(self, script):
         if missing_fields(self.request):

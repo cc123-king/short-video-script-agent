@@ -1,11 +1,13 @@
 """Bounded model → tool → observation loop. Routing decisions belong to provider."""
+import copy
 import json
 import time
 from datetime import datetime, timezone
 
-from .domain import digest, missing_fields
+from .domain import digest, missing_fields, parse_tool_arguments
 from .providers import ProviderError
 from .tools import ToolSession, tool_definitions
+from .content_policy import creative_options
 
 
 def system_prompt(knowledge):
@@ -19,15 +21,21 @@ def system_prompt(knowledge):
 2. 先检索产品资料；无结果时由你决定改写查询或请求补充，不能凭常识添加产品事实。
 3. 产品旁白必须用检索结果 facts 中的 text 或 approved_lines 原文，kind=fact，附 fact_id。
    过渡语 kind=bridge、行动语 kind=cta，只能使用下方品牌核准原文，fact_id=""。
-   标题和 visual 可创作，但不能虚构产品能力、数字、效果、价格或承诺；画面可用界面操作示意。
-   涉及具体界面的画面只能作为待确认示意；在 finish.message 中提醒需要产品界面素材确认，
-   不得声称按钮位置、操作手势或界面细节已有事实证据。这不阻止文本脚本通过检查。
+   标题必须从 creative_options.titles 中原样选择。现有素材没有界面截图或录屏，
+   visual 必须原样选择 creative_options.neutral_visuals，或与本镜有效 fact_id 对应的 fact_visuals.visual。
+   可以选中性人物镜头、纸质分镜、界面占位或事实原文文字卡；不得自行补写控件、手势、
+   自动字幕、导出或比例切换等产品操作。即使标待确认，新增能力也不能通过检查。
+   有界面占位时在 finish.message 提醒补充真实截图或录屏；占位本身不能暗示任何功能。
+   本任务交付的是可编辑文本脚本，界面占位是允许的交付形式；缺截图不阻止该脚本 completed。
+   即使用户风格提到实际操作，也先交付有依据的文字卡或占位脚本，在说明中列出后续拍摄素材需求。
    on_screen_text 使用本镜完整旁白、已引用事实的核准表达，或留空。
 4. 用户含 initial_script 时，第一次 estimate_duration 必须原样提交该初稿（不得提前改写）。
    然后 check_rules 检查初稿，依据可见反馈实际改写；新稿再估时、再检查。
 5. estimate_duration 提交完整脚本、生成版本并估时。check_rules 检查同一 revision_id。
    target_seconds 是最大时长，没有最短时长硬要求。80%–95% 只是可选创作参考，
-   不得以不足 80% 为由请求用户补镜头或判定失败。保留开场、产品演示和行动语；
+   不得以不足 80% 为由请求用户补镜头或判定失败。预算允许时保留开场、产品说明和行动语；
+   很短的目标可删除开场，只保留一条关键事实和行动语，仍是有结构的脚本。
+   连续超时应优先减少镜头/事实数量并选择较短的核准表达，不能只微调 hold_seconds。
    不能为了通过把完整介绍缩成毫无结构的一句话。hold_seconds 要体现真实画面演示所需时间。
    若超时，实际删减/压缩内容或调整镜头，不得仅改总时长数字；必须再次估时。
    初稿两项检查后，新稿若仍超时，优先删重复镜头、选较短的核准表达、合并结构，
@@ -39,7 +47,7 @@ def system_prompt(knowledge):
    结束时 message 简述实际结果/限制，missing_information 列出具体缺口。
 7. 每次工具参数 reason 只写一条基于可见结果的简要行动依据，不输出内部思维过程。
 8. 工具调用有上限，优先完成必要步骤；不能满足就明确结束。
-品牌与核准表达（合成规则）：\n""" + json.dumps(knowledge.brand, ensure_ascii=False)
+品牌与核准表达（合成规则）：\n""" + json.dumps(knowledge.brand, ensure_ascii=False) + "\n创作选项（事实卡在检索后返回）：\n" + json.dumps(creative_options({}), ensure_ascii=False)
 
 
 def brief(observation):
@@ -85,8 +93,9 @@ def run_agent(provider, knowledge, request, *, max_steps=14, max_tool_calls=24, 
         if not all(isinstance(c, dict) and isinstance(c.get("id"), str) and isinstance(c.get("function"), dict) and isinstance(c["function"].get("name"), str) for c in calls):
             termination = "invalid_tool_call"
             break
-        messages.append(reply)
-        for call in calls:
+        history_reply = copy.deepcopy(reply)
+        messages.append(history_reply)
+        for call_index, call in enumerate(calls):
             if len(trace) >= max_tool_calls:
                 termination = "tool_call_limit"
                 break
@@ -94,18 +103,21 @@ def run_agent(provider, knowledge, request, *, max_steps=14, max_tool_calls=24, 
             name = function["name"]
             raw = function.get("arguments", "{}")
             args = {}
+            malformed = False
             if session.final is not None:
                 break
             try:
-                if not isinstance(raw, str) or len(raw) > 40000:
-                    raise ValueError()
-                args = json.loads(raw)
-                if not isinstance(args, dict):
-                    raise ValueError()
+                args = parse_tool_arguments(raw)
                 observation = session.execute(name, args)
             except (json.JSONDecodeError, ValueError):
                 observation = {"ok": False, "error": {"code": "INVALID_JSON", "message": "工具参数须为有效 JSON 对象，且不超过 40000 字符"}}
+                malformed = True
+                # Some compatible APIs reject malformed historical function arguments.
+                # Preserve the original below; send an empty object only in protocol history.
+                history_reply["tool_calls"][call_index]["function"]["arguments"] = "{}"
             event = {"step": len(trace) + 1, "model_round": step, "tool": name, "parameters": args, "decision_basis": args.get("reason", ""), "observation_summary": brief(observation), "observation": observation, "next_action": None}
+            if malformed:
+                event.update({"raw_arguments": raw, "history_arguments_normalized": True})
             if trace:
                 trace[-1]["next_action"] = {"tool": name, "decision_basis": event["decision_basis"]}
             trace.append(event)
@@ -121,4 +133,4 @@ def run_agent(provider, knowledge, request, *, max_steps=14, max_tool_calls=24, 
     if trace:
         trace[-1]["next_action"] = {"status": final["status"], "termination": termination}
     revision = session.revisions.get(final.get("revision_id"))
-    return {"schema_version": "1.0", "created_at": datetime.now(timezone.utc).isoformat(), "execution_mode": provider.mode, "model": provider.model, "request": request, "knowledge_sha256": knowledge.fingerprint, "status": final["status"], "message": final["message"], "missing_information": final["missing_information"], "termination": termination, "revision_id": final.get("revision_id"), "script": revision["script"] if revision else None, "duration": revision.get("duration") if revision else None, "rules": revision.get("rules") if revision else None, "revisions": session.revisions, "trace": trace, "metrics": {"model_rounds": rounds, "tool_calls": len(trace), "max_steps": max_steps, "max_tool_calls": max_tool_calls, "elapsed_seconds": round(time.monotonic() - started, 3), "model_calls": provider.calls}, "limitations": ["仅生成脚本，未生成或发布视频", "时长为文本启发式估算，非真实配音实测", "产品旁白采用核准表达；标题与画面说明仍需人工复核", "离线 Mock 只能验证流程，不能证明真实模型决策效果"]}
+    return {"schema_version": "1.0", "created_at": datetime.now(timezone.utc).isoformat(), "execution_mode": provider.mode, "model": provider.model, "request": request, "knowledge_sha256": knowledge.fingerprint, "status": final["status"], "message": final["message"], "missing_information": final["missing_information"], "termination": termination, "revision_id": final.get("revision_id"), "script": revision["script"] if revision else None, "duration": revision.get("duration") if revision else None, "rules": revision.get("rules") if revision else None, "revisions": session.revisions, "trace": trace, "metrics": {"model_rounds": rounds, "tool_calls": len(trace), "max_steps": max_steps, "max_tool_calls": max_tool_calls, "elapsed_seconds": round(time.monotonic() - started, 3), "model_calls": provider.calls}, "limitations": ["仅生成脚本，未生成或发布视频", "时长为文本启发式估算，非真实配音实测", "旁白、标题与画面采用受控表达，限制自由创作；素材与实际成片仍需人工复核", "离线 Mock 只能验证流程，不能证明真实模型决策效果"]}

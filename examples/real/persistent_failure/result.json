@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "created_at": "2026-10-28T10:54:31.424107+00:00",
+  "created_at": "2026-10-28T12:06:04.743826+00:00",
   "execution_mode": "real_model",
   "model": "qwen-plus",
   "request": {
@@ -11,9 +11,9 @@
     "style": "简洁、友好，展示实际操作，不夸大效果",
     "product_id": "clip-demo"
   },
-  "knowledge_sha256": "8ef730b7f73863d9422a8a9dfca0f33513b6231f9e65b21088c6e790f53be49a",
-  "status": "blocked",
-  "message": "产品资料检索连续失败（三次工具调用均返回测试故障），无法获取字幕与竖屏创作的核准事实，脚本无法合规生成。请稍后重试或确认产品资料服务是否可用。",
+  "knowledge_sha256": "f0d329e55d221c3ea5276e802516f4e21a13247e05a73bf0721eaefc5ed8f02f",
+  "status": "tool_failed",
+  "message": "产品资料检索工具连续四次失败（含改写查询），无法获取 facts 或 approved_lines，脚本无法基于事实构建。请稍后重试或确认系统可用性。",
   "missing_information": [],
   "termination": "model_finished",
   "revision_id": null,
@@ -28,9 +28,9 @@
       "tool": "search_materials",
       "parameters": {
         "query": "轻剪演示版 字幕 竖屏创作",
-        "reason": "需获取产品关于字幕与竖屏创作的核准事实，用于脚本旁白"
+        "reason": "检索产品关于字幕与竖屏创作的核心事实和核准表达"
       },
-      "decision_basis": "需获取产品关于字幕与竖屏创作的核准事实，用于脚本旁白",
+      "decision_basis": "检索产品关于字幕与竖屏创作的核心事实和核准表达",
       "observation_summary": "INJECTED_TOOL_FAILURE: search_materials 测试故障；工具未完成，本次没有成功结果",
       "observation": {
         "ok": false,
@@ -65,7 +65,7 @@
       },
       "next_action": {
         "tool": "search_materials",
-        "decision_basis": "连续两次失败，改用最简关键词组合重试，避免冗余词干扰"
+        "decision_basis": "连续两次失败，改用最简关键词组合重试"
       }
     },
     {
@@ -74,9 +74,9 @@
       "tool": "search_materials",
       "parameters": {
         "query": "clip-demo 字幕 竖屏",
-        "reason": "连续两次失败，改用最简关键词组合重试，避免冗余词干扰"
+        "reason": "连续两次失败，改用最简关键词组合重试"
       },
-      "decision_basis": "连续两次失败，改用最简关键词组合重试，避免冗余词干扰",
+      "decision_basis": "连续两次失败，改用最简关键词组合重试",
       "observation_summary": "INJECTED_TOOL_FAILURE: search_materials 测试故障；工具未完成，本次没有成功结果",
       "observation": {
         "ok": false,
@@ -88,7 +88,7 @@
       },
       "next_action": {
         "tool": "finish",
-        "decision_basis": "search_materials 工具不可用，无事实依据无法继续"
+        "decision_basis": "search_materials 工具持续不可用，无法继续执行核心任务"
       }
     },
     {
@@ -96,22 +96,22 @@
       "model_round": 4,
       "tool": "finish",
       "parameters": {
-        "status": "blocked",
-        "message": "产品资料检索连续失败（三次工具调用均返回测试故障），无法获取字幕与竖屏创作的核准事实，脚本无法合规生成。请稍后重试或确认产品资料服务是否可用。",
-        "reason": "search_materials 工具不可用，无事实依据无法继续"
+        "status": "tool_failed",
+        "message": "产品资料检索工具连续四次失败（含改写查询），无法获取 facts 或 approved_lines，脚本无法基于事实构建。请稍后重试或确认系统可用性。",
+        "reason": "search_materials 工具持续不可用，无法继续执行核心任务"
       },
-      "decision_basis": "search_materials 工具不可用，无事实依据无法继续",
-      "observation_summary": "结束状态: blocked",
+      "decision_basis": "search_materials 工具持续不可用，无法继续执行核心任务",
+      "observation_summary": "结束状态: tool_failed",
       "observation": {
         "ok": true,
         "accepted": true,
-        "status": "blocked",
-        "message": "产品资料检索连续失败（三次工具调用均返回测试故障），无法获取字幕与竖屏创作的核准事实，脚本无法合规生成。请稍后重试或确认产品资料服务是否可用。",
+        "status": "tool_failed",
+        "message": "产品资料检索工具连续四次失败（含改写查询），无法获取 facts 或 approved_lines，脚本无法基于事实构建。请稍后重试或确认系统可用性。",
         "revision_id": null,
         "missing_information": []
       },
       "next_action": {
-        "status": "blocked",
+        "status": "tool_failed",
         "termination": "model_finished"
       }
     }
@@ -121,66 +121,66 @@
     "tool_calls": 4,
     "max_steps": 14,
     "max_tool_calls": 24,
-    "elapsed_seconds": 6.719,
+    "elapsed_seconds": 6.609,
     "model_calls": [
       {
         "model": "qwen-plus",
-        "response_id": "chatcmpl-0d021c2d-0ee2-960f-999e-77ac5e52d2a4",
+        "response_id": "chatcmpl-68eb16d5-da1e-93b6-b25d-9b353621295d",
         "usage": {
-          "prompt_tokens": 1906,
-          "total_tokens": 1960,
-          "completion_tokens": 54,
-          "prompt_tokens_details": {
-            "cached_tokens": 1792
-          }
-        },
-        "latency_seconds": 1.469
-      },
-      {
-        "model": "qwen-plus",
-        "response_id": "chatcmpl-9112e89b-23fa-9f88-9ce7-daa5fa84e588",
-        "usage": {
-          "prompt_tokens": 2016,
-          "total_tokens": 2065,
+          "prompt_tokens": 2230,
+          "total_tokens": 2279,
           "completion_tokens": 49,
           "prompt_tokens_details": {
-            "cached_tokens": 0
+            "cached_tokens": 2048
           }
         },
         "latency_seconds": 1.5
       },
       {
         "model": "qwen-plus",
-        "response_id": "chatcmpl-3cf91013-b6a2-968b-8c5f-80965fffcd1f",
+        "response_id": "chatcmpl-7816fb7d-99dc-9c00-a5e6-3805e4e5ba2b",
         "usage": {
-          "prompt_tokens": 2121,
-          "total_tokens": 2171,
-          "completion_tokens": 50,
+          "prompt_tokens": 2335,
+          "total_tokens": 2384,
+          "completion_tokens": 49,
           "prompt_tokens_details": {
-            "cached_tokens": 0
+            "cached_tokens": 2112
           }
         },
         "latency_seconds": 1.469
       },
       {
         "model": "qwen-plus",
-        "response_id": "chatcmpl-9bcc42a4-4777-918b-b298-159d2d94db16",
+        "response_id": "chatcmpl-4fc61d99-72ee-9baf-b88a-c7b16c62a3cc",
         "usage": {
-          "prompt_tokens": 2227,
-          "total_tokens": 2315,
-          "completion_tokens": 88,
+          "prompt_tokens": 2440,
+          "total_tokens": 2484,
+          "completion_tokens": 44,
           "prompt_tokens_details": {
-            "cached_tokens": 1856
+            "cached_tokens": 320
           }
         },
-        "latency_seconds": 2.281
+        "latency_seconds": 1.422
+      },
+      {
+        "model": "qwen-plus",
+        "response_id": "chatcmpl-c9742463-189f-9b3a-9232-dd1cce051e45",
+        "usage": {
+          "prompt_tokens": 2540,
+          "total_tokens": 2623,
+          "completion_tokens": 83,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        },
+        "latency_seconds": 2.218
       }
     ]
   },
   "limitations": [
     "仅生成脚本，未生成或发布视频",
     "时长为文本启发式估算，非真实配音实测",
-    "产品旁白采用核准表达；标题与画面说明仍需人工复核",
+    "旁白、标题与画面采用受控表达，限制自由创作；素材与实际成片仍需人工复核",
     "离线 Mock 只能验证流程，不能证明真实模型决策效果"
   ]
 }

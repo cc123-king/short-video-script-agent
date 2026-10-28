@@ -3,6 +3,7 @@ import copy
 import re
 
 from .domain import ValidationError, digest, read_json
+from .content_policy import policy_snapshot
 
 
 def terms(value):
@@ -19,7 +20,7 @@ class Knowledge:
         self.catalog = read_json(catalog)
         self.brand = read_json(brand)
         self.duration = read_json(duration)
-        self.fingerprint = digest({"catalog": self.catalog, "brand": self.brand, "duration": self.duration})
+        self.fingerprint = digest({"catalog": self.catalog, "brand": self.brand, "duration": self.duration, "creative_policy": policy_snapshot()})
         self.materials = self.catalog["materials"]
         material_ids, fact_ids = set(), set()
         for material in self.materials:

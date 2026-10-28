@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "created_at": "2026-10-28T11:02:07.938088+00:00",
+  "created_at": "2026-10-28T11:58:01.244155+00:00",
   "execution_mode": "offline_mock",
   "model": "deterministic-offline-fixture-v1",
   "request": {
@@ -11,19 +11,19 @@
     "style": "简洁、友好，展示实际操作，不夸大效果",
     "product_id": "clip-demo"
   },
-  "knowledge_sha256": "cd50a5919cfd7cdde9260b66986417195a4da387fa1f56b9dad4ec99e69b5831",
+  "knowledge_sha256": "dbd6bf096d12483bf0ff97fb7fbabf1b2b0e9b01ed69b39ed4ead04a0d7d2054",
   "status": "completed",
   "message": "脚本通过文本时长估算和合成规则检查；实际成片需复核。",
   "missing_information": [],
   "termination": "model_finished",
-  "revision_id": "rev-90491fb7b4ab91ce",
+  "revision_id": "rev-ca9e85a4cf7481d2",
   "script": {
     "title": "把想法放进画面",
     "product_id": "clip-demo",
     "shots": [
       {
         "id": "S1",
-        "visual": "创作者打开一段待编辑视频，切到工作台。",
+        "visual": "创作者面对镜头，提出本条视频的主题。",
         "segments": [
           {
             "kind": "bridge",
@@ -36,7 +36,7 @@
       },
       {
         "id": "S2",
-        "visual": "镜头展示该素材描述的操作界面。",
+        "visual": "展示素材原文文字卡：轻剪演示版仅支持导入字幕文件。",
         "segments": [
           {
             "kind": "fact",
@@ -49,7 +49,7 @@
       },
       {
         "id": "S3",
-        "visual": "镜头回到创作者和当前视频预览。",
+        "visual": "创作者面向镜头，画面留白承接旁白。",
         "segments": [
           {
             "kind": "cta",
@@ -113,31 +113,24 @@
         "used_text": "支持导入字幕文件。"
       }
     ],
-    "pending_confirmations": [
-      {
-        "shot_id": "S2",
-        "field": "visual",
-        "status": "needs_confirmation",
-        "reason": "素材只证明产品能力，未提供具体界面、控件位置或操作手势的证据",
-        "required_material": "与该镜头对应的产品截图/录屏或经确认的界面说明"
-      }
-    ],
+    "pending_confirmations": [],
     "brand_rule_id": "BRAND-001",
     "brand_version": "2026-10-28",
+    "creative_policy_id": "grounded-creative-v1",
     "manual_review_required": [
-      "标题与画面说明的语义、真实品牌合规及实际成片仍需人工复核",
-      "界面细节在补充素材确认前仅为创作示意，不能当作已验证产品功能"
+      "实际成片、真实品牌合规及素材原文本身仍需人工复核",
+      "界面占位须补充真实截图或录屏后再细化；不能从占位推断产品功能"
     ]
   },
   "revisions": {
-    "rev-90491fb7b4ab91ce": {
+    "rev-ca9e85a4cf7481d2": {
       "script": {
         "title": "把想法放进画面",
         "product_id": "clip-demo",
         "shots": [
           {
             "id": "S1",
-            "visual": "创作者打开一段待编辑视频，切到工作台。",
+            "visual": "创作者面对镜头，提出本条视频的主题。",
             "segments": [
               {
                 "kind": "bridge",
@@ -150,7 +143,7 @@
           },
           {
             "id": "S2",
-            "visual": "镜头展示该素材描述的操作界面。",
+            "visual": "展示素材原文文字卡：轻剪演示版仅支持导入字幕文件。",
             "segments": [
               {
                 "kind": "fact",
@@ -163,7 +156,7 @@
           },
           {
             "id": "S3",
-            "visual": "镜头回到创作者和当前视频预览。",
+            "visual": "创作者面向镜头，画面留白承接旁白。",
             "segments": [
               {
                 "kind": "cta",
@@ -176,7 +169,7 @@
           }
         ]
       },
-      "script_sha256": "90491fb7b4ab91ce66410c4e5a4a25b284f4e0017a45f78029668ba2a709a62e",
+      "script_sha256": "ca9e85a4cf7481d2104efc303777bc74d9894f7b8643ca55226042990f4c511b",
       "rules": {
         "passed": true,
         "issues": [],
@@ -190,20 +183,13 @@
             "used_text": "支持导入字幕文件。"
           }
         ],
-        "pending_confirmations": [
-          {
-            "shot_id": "S2",
-            "field": "visual",
-            "status": "needs_confirmation",
-            "reason": "素材只证明产品能力，未提供具体界面、控件位置或操作手势的证据",
-            "required_material": "与该镜头对应的产品截图/录屏或经确认的界面说明"
-          }
-        ],
+        "pending_confirmations": [],
         "brand_rule_id": "BRAND-001",
         "brand_version": "2026-10-28",
+        "creative_policy_id": "grounded-creative-v1",
         "manual_review_required": [
-          "标题与画面说明的语义、真实品牌合规及实际成片仍需人工复核",
-          "界面细节在补充素材确认前仅为创作示意，不能当作已验证产品功能"
+          "实际成片、真实品牌合规及素材原文本身仍需人工复核",
+          "界面占位须补充真实截图或录屏后再细化；不能从占位推断产品功能"
         ]
       },
       "duration": {
@@ -298,7 +284,28 @@
           }
         ],
         "count": 1,
-        "notice": "合成的资料替换测试：只支持导入字幕文件，不提供添加/编辑字幕或竖屏能力的证据。"
+        "notice": "合成的资料替换测试：只支持导入字幕文件，不提供添加/编辑字幕或竖屏能力的证据。",
+        "creative_options": {
+          "policy_id": "grounded-creative-v1",
+          "titles": [
+            "把想法放进画面",
+            "开始你的下一条视频",
+            "让画面和文字一起讲述"
+          ],
+          "neutral_visuals": [
+            "创作者面对镜头，提出本条视频的主题。",
+            "桌面上的纸质分镜卡依次展开。",
+            "创作者面向镜头，画面留白承接旁白。",
+            "界面占位镜头：等待真实产品截图或录屏，当前仅呈现本镜旁白文字卡。"
+          ],
+          "fact_visuals": [
+            {
+              "fact_id": "P01.F1",
+              "quote": "轻剪演示版仅支持导入字幕文件。",
+              "visual": "展示素材原文文字卡：轻剪演示版仅支持导入字幕文件。"
+            }
+          ]
+        }
       },
       "next_action": {
         "tool": "estimate_duration",
@@ -316,7 +323,7 @@
           "shots": [
             {
               "id": "S1",
-              "visual": "创作者打开一段待编辑视频，切到工作台。",
+              "visual": "创作者面对镜头，提出本条视频的主题。",
               "segments": [
                 {
                   "kind": "bridge",
@@ -329,7 +336,7 @@
             },
             {
               "id": "S2",
-              "visual": "镜头展示该素材描述的操作界面。",
+              "visual": "展示素材原文文字卡：轻剪演示版仅支持导入字幕文件。",
               "segments": [
                 {
                   "kind": "fact",
@@ -342,7 +349,7 @@
             },
             {
               "id": "S3",
-              "visual": "镜头回到创作者和当前视频预览。",
+              "visual": "创作者面向镜头，画面留白承接旁白。",
               "segments": [
                 {
                   "kind": "cta",
@@ -358,11 +365,11 @@
         "reason": "离线测试分支：估算输入初稿或合成脚本"
       },
       "decision_basis": "离线测试分支：估算输入初稿或合成脚本",
-      "observation_summary": "rev-90491fb7b4ab91ce: 27.0 秒 / 上限 30 秒；通过=True",
+      "observation_summary": "rev-ca9e85a4cf7481d2: 27.0 秒 / 上限 30 秒；通过=True",
       "observation": {
         "ok": true,
-        "revision_id": "rev-90491fb7b4ab91ce",
-        "script_sha256": "90491fb7b4ab91ce66410c4e5a4a25b284f4e0017a45f78029668ba2a709a62e",
+        "revision_id": "rev-ca9e85a4cf7481d2",
+        "script_sha256": "ca9e85a4cf7481d2104efc303777bc74d9894f7b8643ca55226042990f4c511b",
         "profile_id": "zh-conservative-v1",
         "estimated_total_seconds": 27.0,
         "target_seconds": 30,
@@ -410,15 +417,15 @@
       "model_round": 3,
       "tool": "check_rules",
       "parameters": {
-        "revision_id": "rev-90491fb7b4ab91ce",
+        "revision_id": "rev-ca9e85a4cf7481d2",
         "reason": "离线测试分支：检查同版本事实与品牌规则"
       },
       "decision_basis": "离线测试分支：检查同版本事实与品牌规则",
-      "observation_summary": "rev-90491fb7b4ab91ce: 规则通过=True；问题数=0",
+      "observation_summary": "rev-ca9e85a4cf7481d2: 规则通过=True；问题数=0",
       "observation": {
         "ok": true,
-        "revision_id": "rev-90491fb7b4ab91ce",
-        "script_sha256": "90491fb7b4ab91ce66410c4e5a4a25b284f4e0017a45f78029668ba2a709a62e",
+        "revision_id": "rev-ca9e85a4cf7481d2",
+        "script_sha256": "ca9e85a4cf7481d2104efc303777bc74d9894f7b8643ca55226042990f4c511b",
         "passed": true,
         "issues": [],
         "citations": [
@@ -431,20 +438,13 @@
             "used_text": "支持导入字幕文件。"
           }
         ],
-        "pending_confirmations": [
-          {
-            "shot_id": "S2",
-            "field": "visual",
-            "status": "needs_confirmation",
-            "reason": "素材只证明产品能力，未提供具体界面、控件位置或操作手势的证据",
-            "required_material": "与该镜头对应的产品截图/录屏或经确认的界面说明"
-          }
-        ],
+        "pending_confirmations": [],
         "brand_rule_id": "BRAND-001",
         "brand_version": "2026-10-28",
+        "creative_policy_id": "grounded-creative-v1",
         "manual_review_required": [
-          "标题与画面说明的语义、真实品牌合规及实际成片仍需人工复核",
-          "界面细节在补充素材确认前仅为创作示意，不能当作已验证产品功能"
+          "实际成片、真实品牌合规及素材原文本身仍需人工复核",
+          "界面占位须补充真实截图或录屏后再细化；不能从占位推断产品功能"
         ]
       },
       "next_action": {
@@ -458,7 +458,7 @@
       "tool": "finish",
       "parameters": {
         "status": "completed",
-        "revision_id": "rev-90491fb7b4ab91ce",
+        "revision_id": "rev-ca9e85a4cf7481d2",
         "message": "脚本通过文本时长估算和合成规则检查；实际成片需复核。",
         "reason": "离线测试分支：最新版本两项检查均通过"
       },
@@ -469,7 +469,7 @@
         "accepted": true,
         "status": "completed",
         "message": "脚本通过文本时长估算和合成规则检查；实际成片需复核。",
-        "revision_id": "rev-90491fb7b4ab91ce",
+        "revision_id": "rev-ca9e85a4cf7481d2",
         "missing_information": []
       },
       "next_action": {
@@ -510,7 +510,7 @@
   "limitations": [
     "仅生成脚本，未生成或发布视频",
     "时长为文本启发式估算，非真实配音实测",
-    "产品旁白采用核准表达；标题与画面说明仍需人工复核",
+    "旁白、标题与画面采用受控表达，限制自由创作；素材与实际成片仍需人工复核",
     "离线 Mock 只能验证流程，不能证明真实模型决策效果"
   ]
 }

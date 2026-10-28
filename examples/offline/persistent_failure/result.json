@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "created_at": "2026-10-28T11:02:07.916086+00:00",
+  "created_at": "2026-10-28T11:58:01.219630+00:00",
   "execution_mode": "offline_mock",
   "model": "deterministic-offline-fixture-v1",
   "request": {
@@ -11,7 +11,7 @@
     "style": "简洁、友好，展示实际操作，不夸大效果",
     "product_id": "clip-demo"
   },
-  "knowledge_sha256": "8ef730b7f73863d9422a8a9dfca0f33513b6231f9e65b21088c6e790f53be49a",
+  "knowledge_sha256": "f0d329e55d221c3ea5276e802516f4e21a13247e05a73bf0721eaefc5ed8f02f",
   "status": "tool_failed",
   "message": "工具无法完成，未宣称脚本成功。",
   "missing_information": [],
@@ -120,7 +120,7 @@
   "limitations": [
     "仅生成脚本，未生成或发布视频",
     "时长为文本启发式估算，非真实配音实测",
-    "产品旁白采用核准表达；标题与画面说明仍需人工复核",
+    "旁白、标题与画面采用受控表达，限制自由创作；素材与实际成片仍需人工复核",
     "离线 Mock 只能验证流程，不能证明真实模型决策效果"
   ]
 }

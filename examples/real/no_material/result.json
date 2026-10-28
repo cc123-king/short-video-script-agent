@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "created_at": "2026-10-28T10:53:41.250884+00:00",
+  "created_at": "2026-10-28T12:05:38.261335+00:00",
   "execution_mode": "real_model",
   "model": "qwen-plus",
   "request": {
@@ -11,11 +11,11 @@
     "style": "简洁",
     "product_id": "unlisted-coffee-machine"
   },
-  "knowledge_sha256": "8ef730b7f73863d9422a8a9dfca0f33513b6231f9e65b21088c6e790f53be49a",
+  "knowledge_sha256": "f0d329e55d221c3ea5276e802516f4e21a13247e05a73bf0721eaefc5ed8f02f",
   "status": "needs_input",
-  "message": "未检索到 product_id 'unlisted-coffee-machine' 的有效产品资料。请提供该智能咖啡机的真实型号、品牌或可验证的公开介绍（如官网链接、参数页截图、说明书节选等），以便生成合规脚本。当前无法凭空虚构产品能力、参数或效果。",
+  "message": "未检索到产品 'unlisted-coffee-machine' 的合成资料（facts 或 approved_lines），无法生成符合品牌规范的旁白内容。请提供该产品的准确名称、型号，或补充其功能事实描述（如支持语音控制、可远程预约、兼容豆粉双模等）以便继续。",
   "missing_information": [
-    "product_id 'unlisted-coffee-machine' 的真实产品资料（如官网参数、功能说明、认证信息等）"
+    "product_id 对应的产品事实资料（facts）"
   ],
   "termination": "model_finished",
   "revision_id": null,
@@ -30,20 +30,35 @@
       "tool": "search_materials",
       "parameters": {
         "query": "unlisted-coffee-machine",
-        "reason": "需获取该智能咖啡机的官方事实资料以支撑脚本旁白"
+        "reason": "检索产品合成资料以获取事实卡和核准表达"
       },
-      "decision_basis": "需获取该智能咖啡机的官方事实资料以支撑脚本旁白",
+      "decision_basis": "检索产品合成资料以获取事实卡和核准表达",
       "observation_summary": "检索到 0 条素材: ",
       "observation": {
         "ok": true,
         "query": "unlisted-coffee-machine",
         "materials": [],
         "count": 0,
-        "notice": "全部为虚构产品的合成测试资料，不代表小影科技或其产品的真实功能。"
+        "notice": "全部为虚构产品的合成测试资料，不代表小影科技或其产品的真实功能。",
+        "creative_options": {
+          "policy_id": "grounded-creative-v1",
+          "titles": [
+            "把想法放进画面",
+            "开始你的下一条视频",
+            "让画面和文字一起讲述"
+          ],
+          "neutral_visuals": [
+            "创作者面对镜头，提出本条视频的主题。",
+            "桌面上的纸质分镜卡依次展开。",
+            "创作者面向镜头，画面留白承接旁白。",
+            "界面占位镜头：等待真实产品截图或录屏，当前仅呈现本镜旁白文字卡。"
+          ],
+          "fact_visuals": []
+        }
       },
       "next_action": {
         "tool": "finish",
-        "decision_basis": "search_materials 返回空结果，且 notice 明确提示为虚构测试资料，不可用于生成事实性旁白"
+        "decision_basis": "search_materials 返回空 materials，无可用事实卡"
       }
     },
     {
@@ -52,22 +67,22 @@
       "tool": "finish",
       "parameters": {
         "status": "needs_input",
-        "message": "未检索到 product_id 'unlisted-coffee-machine' 的有效产品资料。请提供该智能咖啡机的真实型号、品牌或可验证的公开介绍（如官网链接、参数页截图、说明书节选等），以便生成合规脚本。当前无法凭空虚构产品能力、参数或效果。",
+        "message": "未检索到产品 'unlisted-coffee-machine' 的合成资料（facts 或 approved_lines），无法生成符合品牌规范的旁白内容。请提供该产品的准确名称、型号，或补充其功能事实描述（如支持语音控制、可远程预约、兼容豆粉双模等）以便继续。",
         "missing_information": [
-          "product_id 'unlisted-coffee-machine' 的真实产品资料（如官网参数、功能说明、认证信息等）"
+          "product_id 对应的产品事实资料（facts）"
         ],
-        "reason": "search_materials 返回空结果，且 notice 明确提示为虚构测试资料，不可用于生成事实性旁白"
+        "reason": "search_materials 返回空 materials，无可用事实卡"
       },
-      "decision_basis": "search_materials 返回空结果，且 notice 明确提示为虚构测试资料，不可用于生成事实性旁白",
+      "decision_basis": "search_materials 返回空 materials，无可用事实卡",
       "observation_summary": "结束状态: needs_input",
       "observation": {
         "ok": true,
         "accepted": true,
         "status": "needs_input",
-        "message": "未检索到 product_id 'unlisted-coffee-machine' 的有效产品资料。请提供该智能咖啡机的真实型号、品牌或可验证的公开介绍（如官网链接、参数页截图、说明书节选等），以便生成合规脚本。当前无法凭空虚构产品能力、参数或效果。",
+        "message": "未检索到产品 'unlisted-coffee-machine' 的合成资料（facts 或 approved_lines），无法生成符合品牌规范的旁白内容。请提供该产品的准确名称、型号，或补充其功能事实描述（如支持语音控制、可远程预约、兼容豆粉双模等）以便继续。",
         "revision_id": null,
         "missing_information": [
-          "product_id 'unlisted-coffee-machine' 的真实产品资料（如官网参数、功能说明、认证信息等）"
+          "product_id 对应的产品事实资料（facts）"
         ]
       },
       "next_action": {
@@ -81,40 +96,40 @@
     "tool_calls": 2,
     "max_steps": 14,
     "max_tool_calls": 24,
-    "elapsed_seconds": 4.953,
+    "elapsed_seconds": 4.625,
     "model_calls": [
       {
         "model": "qwen-plus",
-        "response_id": "chatcmpl-98a05f66-cf42-914c-9269-07f867a0f68a",
+        "response_id": "chatcmpl-f611f20d-7eb7-9520-ad15-027e393d29a9",
         "usage": {
-          "prompt_tokens": 1891,
-          "total_tokens": 1936,
-          "completion_tokens": 45,
+          "prompt_tokens": 2215,
+          "total_tokens": 2255,
+          "completion_tokens": 40,
           "prompt_tokens_details": {
-            "cached_tokens": 1728
+            "cached_tokens": 2048
           }
         },
-        "latency_seconds": 1.375
+        "latency_seconds": 1.218
       },
       {
         "model": "qwen-plus",
-        "response_id": "chatcmpl-152800bf-8bd7-922f-9920-5d00225f8906",
+        "response_id": "chatcmpl-7b90389f-d3c3-973c-9523-45f5f0007a74",
         "usage": {
-          "prompt_tokens": 1997,
-          "total_tokens": 2147,
-          "completion_tokens": 150,
+          "prompt_tokens": 2430,
+          "total_tokens": 2551,
+          "completion_tokens": 121,
           "prompt_tokens_details": {
-            "cached_tokens": 1728
+            "cached_tokens": 2112
           }
         },
-        "latency_seconds": 3.578
+        "latency_seconds": 3.391
       }
     ]
   },
   "limitations": [
     "仅生成脚本，未生成或发布视频",
     "时长为文本启发式估算，非真实配音实测",
-    "产品旁白采用核准表达；标题与画面说明仍需人工复核",
+    "旁白、标题与画面采用受控表达，限制自由创作；素材与实际成片仍需人工复核",
     "离线 Mock 只能验证流程，不能证明真实模型决策效果"
   ]
 }
