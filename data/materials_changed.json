@@ -1,0 +1,16 @@
+{
+  "synthetic": true,
+  "notice": "合成的资料替换测试：只支持导入字幕文件，不提供添加/编辑字幕或竖屏能力的证据。",
+  "materials": [
+    {
+      "id": "P01",
+      "product_id": "clip-demo",
+      "name": "轻剪演示版：替换后的字幕说明",
+      "version": "2026-10-28",
+      "keywords": ["轻剪", "字幕", "文字", "caption", "subtitle", "口播", "产品介绍"],
+      "facts": [
+        {"id": "P01.F1", "text": "轻剪演示版仅支持导入字幕文件。", "approved_lines": ["支持导入字幕文件。", "字幕文件，可以导入。"]}
+      ]
+    }
+  ]
+}

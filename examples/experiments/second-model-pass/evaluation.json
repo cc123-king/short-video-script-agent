@@ -1,0 +1,165 @@
+{
+  "provider": "qwen",
+  "execution_mode": "real_model",
+  "passed": 3,
+  "total": 3,
+  "distinct_tool_paths": 2,
+  "all_passed": true,
+  "results": [
+    {
+      "case_id": "normal",
+      "execution_mode": "real_model",
+      "expected_statuses": [
+        "completed"
+      ],
+      "actual_status": "completed",
+      "passed": true,
+      "checks": [
+        {
+          "name": "期望任务状态",
+          "passed": true
+        },
+        {
+          "name": "未超工具调用上限",
+          "passed": true
+        },
+        {
+          "name": "最终版本时长通过",
+          "passed": true
+        },
+        {
+          "name": "最终版本规则通过",
+          "passed": true
+        },
+        {
+          "name": "有来源支持",
+          "passed": true
+        },
+        {
+          "name": "完成于最新版本",
+          "passed": true
+        }
+      ],
+      "result_file": "normal/result.json",
+      "path": [
+        "search_materials",
+        "estimate_duration",
+        "check_rules",
+        "estimate_duration",
+        "check_rules",
+        "finish"
+      ]
+    },
+    {
+      "case_id": "overtime",
+      "execution_mode": "real_model",
+      "expected_statuses": [
+        "completed"
+      ],
+      "actual_status": "completed",
+      "passed": true,
+      "checks": [
+        {
+          "name": "期望任务状态",
+          "passed": true
+        },
+        {
+          "name": "未超工具调用上限",
+          "passed": true
+        },
+        {
+          "name": "最终版本时长通过",
+          "passed": true
+        },
+        {
+          "name": "最终版本规则通过",
+          "passed": true
+        },
+        {
+          "name": "有来源支持",
+          "passed": true
+        },
+        {
+          "name": "完成于最新版本",
+          "passed": true
+        },
+        {
+          "name": "实际产生至少两版不同脚本",
+          "passed": true
+        },
+        {
+          "name": "首版超时长",
+          "passed": true
+        }
+      ],
+      "result_file": "overtime/result.json",
+      "path": [
+        "search_materials",
+        "estimate_duration",
+        "check_rules",
+        "estimate_duration",
+        "check_rules",
+        "estimate_duration",
+        "check_rules",
+        "finish",
+        "estimate_duration",
+        "estimate_duration",
+        "check_rules",
+        "finish"
+      ]
+    },
+    {
+      "case_id": "rule_repair",
+      "execution_mode": "real_model",
+      "expected_statuses": [
+        "completed"
+      ],
+      "actual_status": "completed",
+      "passed": true,
+      "checks": [
+        {
+          "name": "期望任务状态",
+          "passed": true
+        },
+        {
+          "name": "未超工具调用上限",
+          "passed": true
+        },
+        {
+          "name": "最终版本时长通过",
+          "passed": true
+        },
+        {
+          "name": "最终版本规则通过",
+          "passed": true
+        },
+        {
+          "name": "有来源支持",
+          "passed": true
+        },
+        {
+          "name": "完成于最新版本",
+          "passed": true
+        },
+        {
+          "name": "实际检测到规则问题",
+          "passed": true
+        },
+        {
+          "name": "规则反馈后修改脚本",
+          "passed": true
+        }
+      ],
+      "result_file": "rule_repair/result.json",
+      "path": [
+        "search_materials",
+        "estimate_duration",
+        "check_rules",
+        "estimate_duration",
+        "check_rules",
+        "finish"
+      ]
+    }
+  ],
+  "note": "离线 Mock 结果不能证明真实模型动态决策；场景断言通过不等于完整语义质量验证。"
+}

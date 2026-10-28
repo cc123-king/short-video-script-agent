@@ -1,0 +1,9 @@
+[project]
+name = "grounded-video-script-agent"
+version = "0.1.0"
+description = "Grounded short-video script agent with Qwen tool calling and auditable revisions"
+requires-python = ">=3.11"
+dependencies = []
+
+[tool.pyright]
+extraPaths = ["src"]

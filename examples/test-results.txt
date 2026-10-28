@@ -1,0 +1,42 @@
+Executed at 2026-10-28T11:02:07.705055+00:00
+Python 3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]
+
+test_action_trace_contains_arguments_observation_and_next_action (test_agent.AgentBoundaryTests.test_action_trace_contains_arguments_observation_and_next_action) ... ok
+test_all_offline_acceptance_scenarios (test_agent.AgentBoundaryTests.test_all_offline_acceptance_scenarios) ... ok
+test_bad_model_json_is_observed_then_stopped_by_limit (test_agent.AgentBoundaryTests.test_bad_model_json_is_observed_then_stopped_by_limit) ... ok
+test_failure_before_first_revision_is_reported_without_crashing (test_agent.AgentBoundaryTests.test_failure_before_first_revision_is_reported_without_crashing) ... ok
+test_free_text_cannot_report_completion (test_agent.AgentBoundaryTests.test_free_text_cannot_report_completion) ... ok
+test_limits_return_explicit_incomplete_with_prior_results (test_agent.AgentBoundaryTests.test_limits_return_explicit_incomplete_with_prior_results) ... ok
+test_provider_error_is_explicit_failure (test_agent.AgentBoundaryTests.test_provider_error_is_explicit_failure) ... ok
+test_report_and_json_are_derived_from_actual_result (test_agent.AgentBoundaryTests.test_report_and_json_are_derived_from_actual_result) ... ok
+test_changed_source_invalidates_old_product_copy (test_agent.ScriptToolsTests.test_changed_source_invalidates_old_product_copy) ... ok
+test_completed_requires_both_checks_on_latest_content (test_agent.ScriptToolsTests.test_completed_requires_both_checks_on_latest_content) ... ok
+test_estimate_uses_actual_narration_not_only_hold (test_agent.ScriptToolsTests.test_estimate_uses_actual_narration_not_only_hold) ... ok
+test_invented_claim_cannot_hide_in_caption_or_bridge (test_agent.ScriptToolsTests.test_invented_claim_cannot_hide_in_caption_or_bridge) ... ok
+test_missing_fields_cannot_be_guessed_by_tool (test_agent.ScriptToolsTests.test_missing_fields_cannot_be_guessed_by_tool) ... ok
+test_older_pass_cannot_authorize_changed_script (test_agent.ScriptToolsTests.test_older_pass_cannot_authorize_changed_script) ... ok
+test_overtime_cannot_finish_successfully (test_agent.ScriptToolsTests.test_overtime_cannot_finish_successfully) ... ok
+test_product_scope_is_enforced (test_agent.ScriptToolsTests.test_product_scope_is_enforced) ... ok
+test_real_id_cannot_support_invented_claim (test_agent.ScriptToolsTests.test_real_id_cannot_support_invented_claim) ... ok
+test_request_validation_rejects_invalid_numeric_limits (test_agent.ScriptToolsTests.test_request_validation_rejects_invalid_numeric_limits) ... ok
+test_reselecting_known_content_still_requires_it_to_be_latest (test_agent.ScriptToolsTests.test_reselecting_known_content_still_requires_it_to_be_latest) ... ok
+test_rule_failure_cannot_finish_successfully (test_agent.ScriptToolsTests.test_rule_failure_cannot_finish_successfully) ... ok
+test_script_version_is_immutable (test_agent.ScriptToolsTests.test_script_version_is_immutable) ... ok
+test_specific_ui_scene_is_marked_pending_even_when_copy_passes (test_agent.ScriptToolsTests.test_specific_ui_scene_is_marked_pending_even_when_copy_passes) ... ok
+test_timeline_matches_total_and_each_shot (test_agent.ScriptToolsTests.test_timeline_matches_total_and_each_shot) ... ok
+test_tool_fault_does_not_create_revision (test_agent.ScriptToolsTests.test_tool_fault_does_not_create_revision) ... ok
+test_unknown_script_fields_cannot_override_estimate (test_agent.ScriptToolsTests.test_unknown_script_fields_cannot_override_estimate) ... ok
+test_unmet_constraint_cannot_be_misreported_as_tool_failure (test_agent.ScriptToolsTests.test_unmet_constraint_cannot_be_misreported_as_tool_failure) ... ok
+test_unretrieved_fact_cannot_be_cited (test_agent.ScriptToolsTests.test_unretrieved_fact_cannot_be_cited) ... ok
+test_user_initial_draft_must_be_evaluated_before_silent_edits (test_agent.ScriptToolsTests.test_user_initial_draft_must_be_evaluated_before_silent_edits) ... ok
+test_credentials_cannot_be_embedded_in_endpoint (test_provider.ProviderTests.test_credentials_cannot_be_embedded_in_endpoint) ... ok
+test_http_errors_do_not_leak_key_or_echoed_body (test_provider.ProviderTests.test_http_errors_do_not_leak_key_or_echoed_body) ... ok
+test_incomplete_key_is_rejected_before_network_call (test_provider.ProviderTests.test_incomplete_key_is_rejected_before_network_call) ... ok
+test_missing_key_is_actionable (test_provider.ProviderTests.test_missing_key_is_actionable) ... ok
+test_native_tool_call_request_and_usage_are_preserved (test_provider.ProviderTests.test_native_tool_call_request_and_usage_are_preserved) ... ok
+test_workspace_key_with_dot_is_supported_but_masked_value_is_not (test_provider.ProviderTests.test_workspace_key_with_dot_is_supported_but_masked_value_is_not) ... ok
+
+----------------------------------------------------------------------
+Ran 34 tests in 0.058s
+
+OK

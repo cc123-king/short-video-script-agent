@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0",
+  "created_at": "2026-10-28T11:02:07.905155+00:00",
+  "execution_mode": "offline_mock",
+  "model": "deterministic-offline-fixture-v1",
+  "request": {
+    "theme": "轻剪演示版字幕介绍",
+    "audience": "新手创作者",
+    "product_id": "clip-demo"
+  },
+  "knowledge_sha256": "8ef730b7f73863d9422a8a9dfca0f33513b6231f9e65b21088c6e790f53be49a",
+  "status": "needs_input",
+  "message": "关键输入不足，请补充后再生成。",
+  "missing_information": [
+    "platform",
+    "style",
+    "target_seconds"
+  ],
+  "termination": "model_finished",
+  "revision_id": null,
+  "script": null,
+  "duration": null,
+  "rules": null,
+  "revisions": {},
+  "trace": [
+    {
+      "step": 1,
+      "model_round": 1,
+      "tool": "finish",
+      "parameters": {
+        "status": "needs_input",
+        "message": "关键输入不足，请补充后再生成。",
+        "missing_information": [
+          "platform",
+          "style",
+          "target_seconds"
+        ],
+        "reason": "离线测试分支：不猜测缺失条件"
+      },
+      "decision_basis": "离线测试分支：不猜测缺失条件",
+      "observation_summary": "结束状态: needs_input",
+      "observation": {
+        "ok": true,
+        "accepted": true,
+        "status": "needs_input",
+        "message": "关键输入不足，请补充后再生成。",
+        "revision_id": null,
+        "missing_information": [
+          "platform",
+          "style",
+          "target_seconds"
+        ]
+      },
+      "next_action": {
+        "status": "needs_input",
+        "termination": "model_finished"
+      }
+    }
+  ],
+  "metrics": {
+    "model_rounds": 1,
+    "tool_calls": 1,
+    "max_steps": 14,
+    "max_tool_calls": 24,
+    "elapsed_seconds": 0.0,
+    "model_calls": [
+      {
+        "model": "deterministic-offline-fixture-v1",
+        "usage": {},
+        "latency_seconds": 0
+      }
+    ]
+  },
+  "limitations": [
+    "仅生成脚本，未生成或发布视频",
+    "时长为文本启发式估算，非真实配音实测",
+    "产品旁白采用核准表达；标题与画面说明仍需人工复核",
+    "离线 Mock 只能验证流程，不能证明真实模型决策效果"
+  ]
+}

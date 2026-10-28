@@ -1,0 +1,427 @@
+{
+  "provider": "qwen",
+  "execution_mode": "real_model",
+  "passed": 10,
+  "total": 10,
+  "distinct_tool_paths": 10,
+  "all_passed": true,
+  "results": [
+    {
+      "case_id": "normal",
+      "execution_mode": "real_model",
+      "expected_statuses": [
+        "completed"
+      ],
+      "actual_status": "completed",
+      "passed": true,
+      "checks": [
+        {
+          "name": "期望任务状态",
+          "passed": true
+        },
+        {
+          "name": "未超工具调用上限",
+          "passed": true
+        },
+        {
+          "name": "最终版本时长通过",
+          "passed": true
+        },
+        {
+          "name": "最终版本规则通过",
+          "passed": true
+        },
+        {
+          "name": "有来源支持",
+          "passed": true
+        },
+        {
+          "name": "完成于最新版本",
+          "passed": true
+        }
+      ],
+      "result_file": "normal/result.json",
+      "path": [
+        "search_materials",
+        "estimate_duration",
+        "check_rules",
+        "finish"
+      ]
+    },
+    {
+      "case_id": "missing",
+      "execution_mode": "real_model",
+      "expected_statuses": [
+        "needs_input"
+      ],
+      "actual_status": "needs_input",
+      "passed": true,
+      "checks": [
+        {
+          "name": "期望任务状态",
+          "passed": true
+        },
+        {
+          "name": "未超工具调用上限",
+          "passed": true
+        },
+        {
+          "name": "不输出成功脚本",
+          "passed": true
+        }
+      ],
+      "result_file": "missing/result.json",
+      "path": [
+        "search_materials",
+        "estimate_duration",
+        "finish"
+      ]
+    },
+    {
+      "case_id": "no_material",
+      "execution_mode": "real_model",
+      "expected_statuses": [
+        "needs_input",
+        "blocked"
+      ],
+      "actual_status": "needs_input",
+      "passed": true,
+      "checks": [
+        {
+          "name": "期望任务状态",
+          "passed": true
+        },
+        {
+          "name": "未超工具调用上限",
+          "passed": true
+        },
+        {
+          "name": "不输出成功脚本",
+          "passed": true
+        }
+      ],
+      "result_file": "no_material/result.json",
+      "path": [
+        "search_materials",
+        "finish"
+      ]
+    },
+    {
+      "case_id": "transient_failure",
+      "execution_mode": "real_model",
+      "expected_statuses": [
+        "completed"
+      ],
+      "actual_status": "completed",
+      "passed": true,
+      "checks": [
+        {
+          "name": "期望任务状态",
+          "passed": true
+        },
+        {
+          "name": "未超工具调用上限",
+          "passed": true
+        },
+        {
+          "name": "最终版本时长通过",
+          "passed": true
+        },
+        {
+          "name": "最终版本规则通过",
+          "passed": true
+        },
+        {
+          "name": "有来源支持",
+          "passed": true
+        },
+        {
+          "name": "完成于最新版本",
+          "passed": true
+        },
+        {
+          "name": "记录真实注入的工具失败",
+          "passed": true
+        }
+      ],
+      "result_file": "transient_failure/result.json",
+      "path": [
+        "search_materials",
+        "search_materials",
+        "estimate_duration",
+        "check_rules",
+        "estimate_duration",
+        "check_rules",
+        "finish"
+      ]
+    },
+    {
+      "case_id": "persistent_failure",
+      "execution_mode": "real_model",
+      "expected_statuses": [
+        "tool_failed",
+        "incomplete",
+        "blocked"
+      ],
+      "actual_status": "blocked",
+      "passed": true,
+      "checks": [
+        {
+          "name": "期望任务状态",
+          "passed": true
+        },
+        {
+          "name": "未超工具调用上限",
+          "passed": true
+        },
+        {
+          "name": "记录真实注入的工具失败",
+          "passed": true
+        },
+        {
+          "name": "不输出成功脚本",
+          "passed": true
+        }
+      ],
+      "result_file": "persistent_failure/result.json",
+      "path": [
+        "search_materials",
+        "search_materials",
+        "search_materials",
+        "finish"
+      ]
+    },
+    {
+      "case_id": "overtime",
+      "execution_mode": "real_model",
+      "expected_statuses": [
+        "completed"
+      ],
+      "actual_status": "completed",
+      "passed": true,
+      "checks": [
+        {
+          "name": "期望任务状态",
+          "passed": true
+        },
+        {
+          "name": "未超工具调用上限",
+          "passed": true
+        },
+        {
+          "name": "最终版本时长通过",
+          "passed": true
+        },
+        {
+          "name": "最终版本规则通过",
+          "passed": true
+        },
+        {
+          "name": "有来源支持",
+          "passed": true
+        },
+        {
+          "name": "完成于最新版本",
+          "passed": true
+        },
+        {
+          "name": "实际产生至少两版不同脚本",
+          "passed": true
+        },
+        {
+          "name": "首版超时长",
+          "passed": true
+        }
+      ],
+      "result_file": "overtime/result.json",
+      "path": [
+        "search_materials",
+        "estimate_duration",
+        "check_rules",
+        "estimate_duration",
+        "check_rules",
+        "estimate_duration",
+        "check_rules",
+        "finish"
+      ]
+    },
+    {
+      "case_id": "rule_repair",
+      "execution_mode": "real_model",
+      "expected_statuses": [
+        "completed"
+      ],
+      "actual_status": "completed",
+      "passed": true,
+      "checks": [
+        {
+          "name": "期望任务状态",
+          "passed": true
+        },
+        {
+          "name": "未超工具调用上限",
+          "passed": true
+        },
+        {
+          "name": "最终版本时长通过",
+          "passed": true
+        },
+        {
+          "name": "最终版本规则通过",
+          "passed": true
+        },
+        {
+          "name": "有来源支持",
+          "passed": true
+        },
+        {
+          "name": "完成于最新版本",
+          "passed": true
+        },
+        {
+          "name": "实际检测到规则问题",
+          "passed": true
+        },
+        {
+          "name": "规则反馈后修改脚本",
+          "passed": true
+        }
+      ],
+      "result_file": "rule_repair/result.json",
+      "path": [
+        "search_materials",
+        "estimate_duration",
+        "check_rules",
+        "estimate_duration",
+        "check_rules",
+        "finish"
+      ]
+    },
+    {
+      "case_id": "short_target",
+      "execution_mode": "real_model",
+      "expected_statuses": [
+        "completed"
+      ],
+      "actual_status": "completed",
+      "passed": true,
+      "checks": [
+        {
+          "name": "期望任务状态",
+          "passed": true
+        },
+        {
+          "name": "未超工具调用上限",
+          "passed": true
+        },
+        {
+          "name": "最终版本时长通过",
+          "passed": true
+        },
+        {
+          "name": "最终版本规则通过",
+          "passed": true
+        },
+        {
+          "name": "有来源支持",
+          "passed": true
+        },
+        {
+          "name": "完成于最新版本",
+          "passed": true
+        }
+      ],
+      "result_file": "short_target/result.json",
+      "path": [
+        "search_materials",
+        "estimate_duration",
+        "check_rules",
+        "estimate_duration",
+        "estimate_duration",
+        "estimate_duration",
+        "check_rules",
+        "finish"
+      ]
+    },
+    {
+      "case_id": "impossible_target",
+      "execution_mode": "real_model",
+      "expected_statuses": [
+        "blocked",
+        "incomplete",
+        "needs_input"
+      ],
+      "actual_status": "blocked",
+      "passed": true,
+      "checks": [
+        {
+          "name": "期望任务状态",
+          "passed": true
+        },
+        {
+          "name": "未超工具调用上限",
+          "passed": true
+        }
+      ],
+      "result_file": "impossible_target/result.json",
+      "path": [
+        "search_materials",
+        "estimate_duration",
+        "estimate_duration",
+        "estimate_duration",
+        "estimate_duration",
+        "finish"
+      ]
+    },
+    {
+      "case_id": "changed_material",
+      "execution_mode": "real_model",
+      "expected_statuses": [
+        "completed"
+      ],
+      "actual_status": "completed",
+      "passed": true,
+      "checks": [
+        {
+          "name": "期望任务状态",
+          "passed": true
+        },
+        {
+          "name": "未超工具调用上限",
+          "passed": true
+        },
+        {
+          "name": "最终版本时长通过",
+          "passed": true
+        },
+        {
+          "name": "最终版本规则通过",
+          "passed": true
+        },
+        {
+          "name": "有来源支持",
+          "passed": true
+        },
+        {
+          "name": "完成于最新版本",
+          "passed": true
+        },
+        {
+          "name": "依据替换后的原文生成",
+          "passed": true
+        }
+      ],
+      "result_file": "changed_material/result.json",
+      "path": [
+        "search_materials",
+        "estimate_duration",
+        "check_rules",
+        "check_rules",
+        "estimate_duration",
+        "check_rules",
+        "finish"
+      ]
+    }
+  ],
+  "note": "离线 Mock 结果不能证明真实模型动态决策；场景断言通过不等于完整语义质量验证。"
+}

@@ -1,0 +1,516 @@
+{
+  "schema_version": "1.0",
+  "created_at": "2026-10-28T11:02:07.938088+00:00",
+  "execution_mode": "offline_mock",
+  "model": "deterministic-offline-fixture-v1",
+  "request": {
+    "theme": "轻剪演示版的字幕与竖屏创作介绍",
+    "audience": "刚开始制作短视频的内容创作者",
+    "platform": "抖音",
+    "target_seconds": 30,
+    "style": "简洁、友好，展示实际操作，不夸大效果",
+    "product_id": "clip-demo"
+  },
+  "knowledge_sha256": "cd50a5919cfd7cdde9260b66986417195a4da387fa1f56b9dad4ec99e69b5831",
+  "status": "completed",
+  "message": "脚本通过文本时长估算和合成规则检查；实际成片需复核。",
+  "missing_information": [],
+  "termination": "model_finished",
+  "revision_id": "rev-90491fb7b4ab91ce",
+  "script": {
+    "title": "把想法放进画面",
+    "product_id": "clip-demo",
+    "shots": [
+      {
+        "id": "S1",
+        "visual": "创作者打开一段待编辑视频，切到工作台。",
+        "segments": [
+          {
+            "kind": "bridge",
+            "text": "你的视频，想表达什么？",
+            "fact_id": ""
+          }
+        ],
+        "on_screen_text": "你的视频，想表达什么？",
+        "hold_seconds": 9.0
+      },
+      {
+        "id": "S2",
+        "visual": "镜头展示该素材描述的操作界面。",
+        "segments": [
+          {
+            "kind": "fact",
+            "text": "支持导入字幕文件。",
+            "fact_id": "P01.F1"
+          }
+        ],
+        "on_screen_text": "支持导入字幕文件。",
+        "hold_seconds": 9.0
+      },
+      {
+        "id": "S3",
+        "visual": "镜头回到创作者和当前视频预览。",
+        "segments": [
+          {
+            "kind": "cta",
+            "text": "试着剪出你的下一条视频。",
+            "fact_id": ""
+          }
+        ],
+        "on_screen_text": "试着剪出你的下一条视频。",
+        "hold_seconds": 9.0
+      }
+    ]
+  },
+  "duration": {
+    "profile_id": "zh-conservative-v1",
+    "estimated_total_seconds": 27.0,
+    "target_seconds": 30,
+    "within_limit": true,
+    "over_by_seconds": 0,
+    "shots": [
+      {
+        "shot_id": "S1",
+        "start_seconds": 0.0,
+        "end_seconds": 9.0,
+        "estimated_seconds": 9.0,
+        "speech_seconds": 2.94,
+        "visual_hold_seconds": 9.0,
+        "subtitle_seconds": 1.5
+      },
+      {
+        "shot_id": "S2",
+        "start_seconds": 9.0,
+        "end_seconds": 18.0,
+        "estimated_seconds": 9.0,
+        "speech_seconds": 2.65,
+        "visual_hold_seconds": 9.0,
+        "subtitle_seconds": 1.33
+      },
+      {
+        "shot_id": "S3",
+        "start_seconds": 18.0,
+        "end_seconds": 27.0,
+        "estimated_seconds": 9.0,
+        "speech_seconds": 3.51,
+        "visual_hold_seconds": 9.0,
+        "subtitle_seconds": 1.83
+      }
+    ],
+    "method": "逐镜取画面停留、含安全系数的口播、字幕阅读三者最大值后相加",
+    "limitation": "启发式文本估算，非配音或成片实测"
+  },
+  "rules": {
+    "passed": true,
+    "issues": [],
+    "citations": [
+      {
+        "shot_id": "S2",
+        "fact_id": "P01.F1",
+        "material_id": "P01",
+        "version": "2026-10-28",
+        "quote": "轻剪演示版仅支持导入字幕文件。",
+        "used_text": "支持导入字幕文件。"
+      }
+    ],
+    "pending_confirmations": [
+      {
+        "shot_id": "S2",
+        "field": "visual",
+        "status": "needs_confirmation",
+        "reason": "素材只证明产品能力，未提供具体界面、控件位置或操作手势的证据",
+        "required_material": "与该镜头对应的产品截图/录屏或经确认的界面说明"
+      }
+    ],
+    "brand_rule_id": "BRAND-001",
+    "brand_version": "2026-10-28",
+    "manual_review_required": [
+      "标题与画面说明的语义、真实品牌合规及实际成片仍需人工复核",
+      "界面细节在补充素材确认前仅为创作示意，不能当作已验证产品功能"
+    ]
+  },
+  "revisions": {
+    "rev-90491fb7b4ab91ce": {
+      "script": {
+        "title": "把想法放进画面",
+        "product_id": "clip-demo",
+        "shots": [
+          {
+            "id": "S1",
+            "visual": "创作者打开一段待编辑视频，切到工作台。",
+            "segments": [
+              {
+                "kind": "bridge",
+                "text": "你的视频，想表达什么？",
+                "fact_id": ""
+              }
+            ],
+            "on_screen_text": "你的视频，想表达什么？",
+            "hold_seconds": 9.0
+          },
+          {
+            "id": "S2",
+            "visual": "镜头展示该素材描述的操作界面。",
+            "segments": [
+              {
+                "kind": "fact",
+                "text": "支持导入字幕文件。",
+                "fact_id": "P01.F1"
+              }
+            ],
+            "on_screen_text": "支持导入字幕文件。",
+            "hold_seconds": 9.0
+          },
+          {
+            "id": "S3",
+            "visual": "镜头回到创作者和当前视频预览。",
+            "segments": [
+              {
+                "kind": "cta",
+                "text": "试着剪出你的下一条视频。",
+                "fact_id": ""
+              }
+            ],
+            "on_screen_text": "试着剪出你的下一条视频。",
+            "hold_seconds": 9.0
+          }
+        ]
+      },
+      "script_sha256": "90491fb7b4ab91ce66410c4e5a4a25b284f4e0017a45f78029668ba2a709a62e",
+      "rules": {
+        "passed": true,
+        "issues": [],
+        "citations": [
+          {
+            "shot_id": "S2",
+            "fact_id": "P01.F1",
+            "material_id": "P01",
+            "version": "2026-10-28",
+            "quote": "轻剪演示版仅支持导入字幕文件。",
+            "used_text": "支持导入字幕文件。"
+          }
+        ],
+        "pending_confirmations": [
+          {
+            "shot_id": "S2",
+            "field": "visual",
+            "status": "needs_confirmation",
+            "reason": "素材只证明产品能力，未提供具体界面、控件位置或操作手势的证据",
+            "required_material": "与该镜头对应的产品截图/录屏或经确认的界面说明"
+          }
+        ],
+        "brand_rule_id": "BRAND-001",
+        "brand_version": "2026-10-28",
+        "manual_review_required": [
+          "标题与画面说明的语义、真实品牌合规及实际成片仍需人工复核",
+          "界面细节在补充素材确认前仅为创作示意，不能当作已验证产品功能"
+        ]
+      },
+      "duration": {
+        "profile_id": "zh-conservative-v1",
+        "estimated_total_seconds": 27.0,
+        "target_seconds": 30,
+        "within_limit": true,
+        "over_by_seconds": 0,
+        "shots": [
+          {
+            "shot_id": "S1",
+            "start_seconds": 0.0,
+            "end_seconds": 9.0,
+            "estimated_seconds": 9.0,
+            "speech_seconds": 2.94,
+            "visual_hold_seconds": 9.0,
+            "subtitle_seconds": 1.5
+          },
+          {
+            "shot_id": "S2",
+            "start_seconds": 9.0,
+            "end_seconds": 18.0,
+            "estimated_seconds": 9.0,
+            "speech_seconds": 2.65,
+            "visual_hold_seconds": 9.0,
+            "subtitle_seconds": 1.33
+          },
+          {
+            "shot_id": "S3",
+            "start_seconds": 18.0,
+            "end_seconds": 27.0,
+            "estimated_seconds": 9.0,
+            "speech_seconds": 3.51,
+            "visual_hold_seconds": 9.0,
+            "subtitle_seconds": 1.83
+          }
+        ],
+        "method": "逐镜取画面停留、含安全系数的口播、字幕阅读三者最大值后相加",
+        "limitation": "启发式文本估算，非配音或成片实测"
+      }
+    }
+  },
+  "trace": [
+    {
+      "step": 1,
+      "model_round": 1,
+      "tool": "search_materials",
+      "parameters": {
+        "query": "轻剪演示版的字幕与竖屏创作介绍",
+        "reason": "离线测试分支：查找素材"
+      },
+      "decision_basis": "离线测试分支：查找素材",
+      "observation_summary": "检索到 1 条素材: P01",
+      "observation": {
+        "ok": true,
+        "query": "轻剪演示版的字幕与竖屏创作介绍",
+        "materials": [
+          {
+            "id": "P01",
+            "product_id": "clip-demo",
+            "name": "轻剪演示版：替换后的字幕说明",
+            "version": "2026-10-28",
+            "keywords": [
+              "轻剪",
+              "字幕",
+              "文字",
+              "caption",
+              "subtitle",
+              "口播",
+              "产品介绍"
+            ],
+            "facts": [
+              {
+                "id": "P01.F1",
+                "text": "轻剪演示版仅支持导入字幕文件。",
+                "approved_lines": [
+                  "支持导入字幕文件。",
+                  "字幕文件，可以导入。"
+                ]
+              }
+            ],
+            "search_score": 7,
+            "matched_terms": [
+              "介绍",
+              "剪演",
+              "字幕",
+              "演示",
+              "的字",
+              "示版",
+              "轻剪"
+            ]
+          }
+        ],
+        "count": 1,
+        "notice": "合成的资料替换测试：只支持导入字幕文件，不提供添加/编辑字幕或竖屏能力的证据。"
+      },
+      "next_action": {
+        "tool": "estimate_duration",
+        "decision_basis": "离线测试分支：估算输入初稿或合成脚本"
+      }
+    },
+    {
+      "step": 2,
+      "model_round": 2,
+      "tool": "estimate_duration",
+      "parameters": {
+        "script": {
+          "title": "把想法放进画面",
+          "product_id": "clip-demo",
+          "shots": [
+            {
+              "id": "S1",
+              "visual": "创作者打开一段待编辑视频，切到工作台。",
+              "segments": [
+                {
+                  "kind": "bridge",
+                  "text": "你的视频，想表达什么？",
+                  "fact_id": ""
+                }
+              ],
+              "on_screen_text": "你的视频，想表达什么？",
+              "hold_seconds": 9.0
+            },
+            {
+              "id": "S2",
+              "visual": "镜头展示该素材描述的操作界面。",
+              "segments": [
+                {
+                  "kind": "fact",
+                  "text": "支持导入字幕文件。",
+                  "fact_id": "P01.F1"
+                }
+              ],
+              "on_screen_text": "支持导入字幕文件。",
+              "hold_seconds": 9.0
+            },
+            {
+              "id": "S3",
+              "visual": "镜头回到创作者和当前视频预览。",
+              "segments": [
+                {
+                  "kind": "cta",
+                  "text": "试着剪出你的下一条视频。",
+                  "fact_id": ""
+                }
+              ],
+              "on_screen_text": "试着剪出你的下一条视频。",
+              "hold_seconds": 9.0
+            }
+          ]
+        },
+        "reason": "离线测试分支：估算输入初稿或合成脚本"
+      },
+      "decision_basis": "离线测试分支：估算输入初稿或合成脚本",
+      "observation_summary": "rev-90491fb7b4ab91ce: 27.0 秒 / 上限 30 秒；通过=True",
+      "observation": {
+        "ok": true,
+        "revision_id": "rev-90491fb7b4ab91ce",
+        "script_sha256": "90491fb7b4ab91ce66410c4e5a4a25b284f4e0017a45f78029668ba2a709a62e",
+        "profile_id": "zh-conservative-v1",
+        "estimated_total_seconds": 27.0,
+        "target_seconds": 30,
+        "within_limit": true,
+        "over_by_seconds": 0,
+        "shots": [
+          {
+            "shot_id": "S1",
+            "start_seconds": 0.0,
+            "end_seconds": 9.0,
+            "estimated_seconds": 9.0,
+            "speech_seconds": 2.94,
+            "visual_hold_seconds": 9.0,
+            "subtitle_seconds": 1.5
+          },
+          {
+            "shot_id": "S2",
+            "start_seconds": 9.0,
+            "end_seconds": 18.0,
+            "estimated_seconds": 9.0,
+            "speech_seconds": 2.65,
+            "visual_hold_seconds": 9.0,
+            "subtitle_seconds": 1.33
+          },
+          {
+            "shot_id": "S3",
+            "start_seconds": 18.0,
+            "end_seconds": 27.0,
+            "estimated_seconds": 9.0,
+            "speech_seconds": 3.51,
+            "visual_hold_seconds": 9.0,
+            "subtitle_seconds": 1.83
+          }
+        ],
+        "method": "逐镜取画面停留、含安全系数的口播、字幕阅读三者最大值后相加",
+        "limitation": "启发式文本估算，非配音或成片实测"
+      },
+      "next_action": {
+        "tool": "check_rules",
+        "decision_basis": "离线测试分支：检查同版本事实与品牌规则"
+      }
+    },
+    {
+      "step": 3,
+      "model_round": 3,
+      "tool": "check_rules",
+      "parameters": {
+        "revision_id": "rev-90491fb7b4ab91ce",
+        "reason": "离线测试分支：检查同版本事实与品牌规则"
+      },
+      "decision_basis": "离线测试分支：检查同版本事实与品牌规则",
+      "observation_summary": "rev-90491fb7b4ab91ce: 规则通过=True；问题数=0",
+      "observation": {
+        "ok": true,
+        "revision_id": "rev-90491fb7b4ab91ce",
+        "script_sha256": "90491fb7b4ab91ce66410c4e5a4a25b284f4e0017a45f78029668ba2a709a62e",
+        "passed": true,
+        "issues": [],
+        "citations": [
+          {
+            "shot_id": "S2",
+            "fact_id": "P01.F1",
+            "material_id": "P01",
+            "version": "2026-10-28",
+            "quote": "轻剪演示版仅支持导入字幕文件。",
+            "used_text": "支持导入字幕文件。"
+          }
+        ],
+        "pending_confirmations": [
+          {
+            "shot_id": "S2",
+            "field": "visual",
+            "status": "needs_confirmation",
+            "reason": "素材只证明产品能力，未提供具体界面、控件位置或操作手势的证据",
+            "required_material": "与该镜头对应的产品截图/录屏或经确认的界面说明"
+          }
+        ],
+        "brand_rule_id": "BRAND-001",
+        "brand_version": "2026-10-28",
+        "manual_review_required": [
+          "标题与画面说明的语义、真实品牌合规及实际成片仍需人工复核",
+          "界面细节在补充素材确认前仅为创作示意，不能当作已验证产品功能"
+        ]
+      },
+      "next_action": {
+        "tool": "finish",
+        "decision_basis": "离线测试分支：最新版本两项检查均通过"
+      }
+    },
+    {
+      "step": 4,
+      "model_round": 4,
+      "tool": "finish",
+      "parameters": {
+        "status": "completed",
+        "revision_id": "rev-90491fb7b4ab91ce",
+        "message": "脚本通过文本时长估算和合成规则检查；实际成片需复核。",
+        "reason": "离线测试分支：最新版本两项检查均通过"
+      },
+      "decision_basis": "离线测试分支：最新版本两项检查均通过",
+      "observation_summary": "结束状态: completed",
+      "observation": {
+        "ok": true,
+        "accepted": true,
+        "status": "completed",
+        "message": "脚本通过文本时长估算和合成规则检查；实际成片需复核。",
+        "revision_id": "rev-90491fb7b4ab91ce",
+        "missing_information": []
+      },
+      "next_action": {
+        "status": "completed",
+        "termination": "model_finished"
+      }
+    }
+  ],
+  "metrics": {
+    "model_rounds": 4,
+    "tool_calls": 4,
+    "max_steps": 14,
+    "max_tool_calls": 24,
+    "elapsed_seconds": 0.0,
+    "model_calls": [
+      {
+        "model": "deterministic-offline-fixture-v1",
+        "usage": {},
+        "latency_seconds": 0
+      },
+      {
+        "model": "deterministic-offline-fixture-v1",
+        "usage": {},
+        "latency_seconds": 0
+      },
+      {
+        "model": "deterministic-offline-fixture-v1",
+        "usage": {},
+        "latency_seconds": 0
+      },
+      {
+        "model": "deterministic-offline-fixture-v1",
+        "usage": {},
+        "latency_seconds": 0
+      }
+    ]
+  },
+  "limitations": [
+    "仅生成脚本，未生成或发布视频",
+    "时长为文本启发式估算，非真实配音实测",
+    "产品旁白采用核准表达；标题与画面说明仍需人工复核",
+    "离线 Mock 只能验证流程，不能证明真实模型决策效果"
+  ]
+}

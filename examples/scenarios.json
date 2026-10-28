@@ -1,0 +1,14 @@
+{
+  "scenarios": [
+    {"id": "normal", "input": "examples/inputs/normal.json", "expected_statuses": ["completed"]},
+    {"id": "missing", "input": "examples/inputs/missing.json", "expected_statuses": ["needs_input"], "require_no_script": true},
+    {"id": "no_material", "input": "examples/inputs/no_material.json", "expected_statuses": ["needs_input", "blocked"], "require_no_script": true},
+    {"id": "transient_failure", "input": "examples/inputs/normal.json", "failures": {"search_materials": 1}, "expected_statuses": ["completed"], "require_tool_error": true},
+    {"id": "persistent_failure", "input": "examples/inputs/normal.json", "failures": {"search_materials": 60}, "expected_statuses": ["tool_failed", "incomplete", "blocked"], "require_tool_error": true, "require_no_script": true},
+    {"id": "overtime", "input": "examples/inputs/overtime.json", "expected_statuses": ["completed"], "require_revision": true},
+    {"id": "rule_repair", "input": "examples/inputs/rule_repair.json", "expected_statuses": ["completed"], "require_rule_repair": true},
+    {"id": "short_target", "input": "examples/inputs/short_target.json", "expected_statuses": ["completed"]},
+    {"id": "impossible_target", "input": "examples/inputs/impossible_target.json", "expected_statuses": ["blocked", "incomplete", "needs_input"]},
+    {"id": "changed_material", "input": "examples/inputs/normal.json", "catalog": "data/materials_changed.json", "expected_statuses": ["completed"], "required_quote": "轻剪演示版仅支持导入字幕文件。"}
+  ]
+}

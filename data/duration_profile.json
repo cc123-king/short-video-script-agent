@@ -1,0 +1,9 @@
+{
+  "id": "zh-conservative-v1",
+  "language": "zh-CN",
+  "speech_units_per_second": 4.0,
+  "speech_safety_factor": 1.15,
+  "pause_seconds_per_shot": 0.35,
+  "subtitle_units_per_second": 6.0,
+  "notice": "文本启发式估算，非真实配音测量；平台不改变语速；按中文口播评估。"
+}
